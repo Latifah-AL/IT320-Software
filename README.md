@@ -54,8 +54,3 @@ Users can submit reports with descriptions, images, and locations, while admins 
 
 This project is part of a course assignment and will be expanded with backend and database integration.
 
-##Group members
-* Alhanouf Almusnad
-* *Latifah Almousa
-* Layan Alsaab
-* Sara Alswailem
