@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>عينك — إضافة بلاغ</title>
+        <title>عينك — تعديل البلاغ</title>
         <link rel="stylesheet" href="../CSS/main.css"/>
-        <link rel="stylesheet" href="../CSS/create-report.css"/>
+        <link rel="stylesheet" href="../CSS/edit-report.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
         <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Cairo:wght@700;800&display=swap" rel="stylesheet"/>
     </head>
@@ -18,9 +18,9 @@
                     <img src="../Images/logo.png" alt="عينك"/>
                 </a>
                 <ul class="nav-links">
-                    <li><a href="index.html">الرئيسية</a></li>
-                    <li><a href="create-report.html" class="active">إضافة بلاغ</a></li>
-                    <li><a href="my-reports.html">بلاغاتي</a></li>
+                    <li><a href="dashboard.html">الرئيسية</a></li>
+                    <li><a href="create-report.html">إضافة بلاغ</a></li>
+                    <li><a href="my-reports.html" class="active">بلاغاتي</a></li>
                     <li><a href="map.html">الخريطة</a></li>
                 </ul>
                 <div class="nav-user">
@@ -35,7 +35,7 @@
                 </button>
             </div>
             <div class="mobile-nav" id="mobileNav">
-                <a href="dashboard.html">الرئيسية</a>
+                <a href="index.html">الرئيسية</a>
                 <a href="create-report.html">إضافة بلاغ</a>
                 <a href="my-reports.html">بلاغاتي</a>
                 <a href="map.html">الخريطة</a>
@@ -50,8 +50,8 @@
                 <!-- Page Header -->
                 <div class="page-header">
                     <div>
-                        <h1>إضافة بلاغ جديد</h1>
-                        <p>أدخل تفاصيل المخالفة التي تريد الإبلاغ عنها</p>
+                        <h1>تعديل البلاغ</h1>
+                        <p class="report-id-label">رقم البلاغ: <span>RPT-001</span></p>
                     </div>
                     <a href="my-reports.html" class="btn-back">
                         <i class="fa-solid fa-arrow-right"></i> العودة للبلاغات
@@ -67,12 +67,7 @@
                             <label for="title">
                                 <i class="fa-solid fa-heading"></i> عنوان البلاغ
                             </label>
-                            <input
-                                type="text"
-                                id="title"
-                                name="title"
-                                placeholder="مثال: وقوف مخالف أمام مدخل"
-                            />
+                            <input type="text" id="title" name="title" value="وقوف مخالف أمام مدخل">
                         </div>
 
                         <!-- Category -->
@@ -81,25 +76,12 @@
                                 <i class="fa-solid fa-tag"></i> نوع المخالفة
                             </label>
                             <select id="category" name="category">
-                                <option value="" disabled selected>اختر نوع المخالفة</option>
-                                <option value="parking">
-                                    🚗 وقوف مخالف
-                                </option>
-                                <option value="sidewalk">
-                                    🚶 إشغال رصيف المشاة
-                                </option>
-                                <option value="emergency">
-                                    🚑 سد مخرج طوارئ
-                                </option>
-                                <option value="disabled">
-                                    ♿ مواقف ذوي الاحتياجات
-                                </option>
-                                <option value="traffic">
-                                    🚧 إعاقة حركة المرور
-                                </option>
-                                <option value="other">
-                                    ⚠️ أخرى
-                                </option>
+                                <option value="parking" selected>🚗 وقوف مخالف</option>
+                                <option value="sidewalk">🚶 إشغال رصيف المشاة</option>
+                                <option value="emergency">🚑 سد مخرج طوارئ</option>
+                                <option value="disabled">♿ مواقف ذوي الاحتياجات</option>
+                                <option value="traffic">🚧 إعاقة حركة المرور</option>
+                                <option value="other">⚠️ أخرى</option>
                             </select>
                         </div>
 
@@ -108,22 +90,23 @@
                             <label for="description">
                                 <i class="fa-solid fa-align-right"></i> وصف المخالفة
                             </label>
-                            <textarea
-                                id="description"
-                                name="description"
-                                rows="4"
-                                placeholder="اكتب وصفاً مختصراً للمخالفة..."
-                            ></textarea>
+                            <textarea id="description" name="description"ows="4">سيارة واقفة بشكل مخالف أمام مدخل المبنى وتعيق حركة الدخول والخروج</textarea>
                         </div>
 
-                        <!-- Image Upload -->
+                        <!-- Current Image -->
                         <div class="form-group">
                             <label>
                                 <i class="fa-solid fa-camera"></i> صورة المخالفة
                             </label>
-                            <div class="upload-area" onclick="document.getElementById('imageInput').click()">
+                            <div class="current-image">
+                                <div class="img-placeholder-edit">
+                                    <i class="fa-solid fa-image"></i>
+                                    <span>الصورة الحالية</span>
+                                </div>
+                            </div>
+                            <div class="upload-area">
                                 <i class="fa-solid fa-cloud-arrow-up"></i>
-                                <p>اضغط لرفع صورة</p>
+                                <p>اضغط لتغيير الصورة</p>
                                 <span>PNG, JPG حتى 5MB</span>
                                 <input type="file" id="imageInput" name="image" accept="image/*" hidden/>
                             </div>
@@ -139,7 +122,7 @@
                                     type="text"
                                     id="location"
                                     name="location"
-                                    placeholder="مثال: حي النزهة، الرياض"
+                                    value="حي النزهة، الرياض"
                                 />
                                 <button type="button" class="btn-detect">
                                     <i class="fa-solid fa-crosshairs"></i> تحديد تلقائي
@@ -147,18 +130,24 @@
                             </div>
                         </div>
 
+                        <!-- Date & Time -->
                         <div class="form-group">
                             <label for="datetime">
                                 <i class="fa-solid fa-clock"></i> تاريخ ووقت المخالفة
                             </label>
-                            <input type="datetime-local" id="datetime" name="datetime">
+                            <input
+                                type="datetime-local"
+                                id="datetime"
+                                name="datetime"
+                                value="2025-01-12T10:30"
+                            />
                         </div>
 
                         <!-- Submit -->
                         <div class="form-submit">
                             <a href="my-reports.html" class="btn-cancel-form">إلغاء</a>
                             <button type="submit" class="btn-submit">
-                                <i class="fa-solid fa-paper-plane"></i> إرسال البلاغ
+                                <i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات
                             </button>
                         </div>
 
@@ -177,7 +166,7 @@
                 </div>
                 <div class="footer-links">
                     <h5>روابط</h5>
-                    <a href="dashboard.html">الرئيسية</a>
+                    <a href="index.html">الرئيسية</a>
                     <a href="create-report.html">إضافة بلاغ</a>
                     <a href="my-reports.html">بلاغاتي</a>
                     <a href="map.html">الخريطة</a>

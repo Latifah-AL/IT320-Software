@@ -23,10 +23,16 @@
     margin-bottom: 0.2rem;
 }
 
-.page-header p {
-    font-size: 0.92rem;
+.report-id-label {
+    font-size: 0.88rem;
     color: var(--muted);
     margin: 0;
+}
+
+.report-id-label span {
+    font-family: monospace;
+    font-weight: 700;
+    color: var(--green-mid);
 }
 
 /* =====================
@@ -151,11 +157,6 @@
     border-color: var(--green);
 }
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: var(--muted);
-}
-
 .form-group select {
     cursor: pointer;
     appearance: none;
@@ -167,12 +168,43 @@
 }
 
 /* =====================
+   Current Image
+===================== */
+.current-image {
+    margin-bottom: 0.75rem;
+}
+
+.img-placeholder-edit {
+    width: 100%;
+    height: 180px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--muted);
+}
+
+.img-placeholder-edit i {
+    font-size: 2.5rem;
+    color: var(--border);
+}
+
+.img-placeholder-edit span {
+    font-size: 0.88rem;
+    color: var(--muted);
+}
+
+/* =====================
    Image Upload
 ===================== */
 .upload-area {
     border: 2px dashed var(--border);
     border-radius: 8px;
-    padding: 2rem;
+    padding: 1.25rem;
     text-align: center;
     cursor: pointer;
     transition: all 0.2s;
@@ -185,21 +217,21 @@
 }
 
 .upload-area i {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--green-mid);
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
 }
 
 .upload-area p {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     font-weight: 600;
     color: var(--text);
-    margin: 0 0 0.25rem;
+    margin: 0 0 0.2rem;
 }
 
 .upload-area span {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     color: var(--muted);
 }
 
@@ -229,10 +261,6 @@
     border-color: var(--green);
 }
 
-.location-row input::placeholder {
-    color: var(--muted);
-}
-
 .btn-detect {
     display: inline-flex;
     align-items: center;
@@ -255,9 +283,8 @@
 }
 
 /* =====================
-   Form Time
+   Date & Time
 ===================== */
-
 input[type="datetime-local"] {
     width: 100%;
     padding: 0.7rem 1rem;
