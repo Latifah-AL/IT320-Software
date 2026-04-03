@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>عينك — بلاغاتي</title>
+        <link rel="stylesheet" href="../CSS/main.css"/>
+        <link rel="stylesheet" href="../CSS/my-reports.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Cairo:wght@700;800&display=swap" rel="stylesheet"/>
+    </head>
+    <body>
+
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="nav-inner">
+                <a href="index.html" class="logo">
+                    <img src="../Images/logo.png" alt="عينك"/>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="create-report.html">إضافة بلاغ</a></li>
+                    <li><a href="my-reports.html" class="active">بلاغاتي</a></li>
+                    <li><a href="map.html">الخريطة</a></li>
+                </ul>
+                <div class="nav-user">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span>لطيفة</span>
+                    <a href="index.html" class="btn-logout">
+                        <i class="fa-solid fa-right-from-bracket"></i> خروج
+                    </a>
+                </div>
+                <button class="burger" id="burger">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <div class="mobile-nav" id="mobileNav">
+                <a href="index.html">الرئيسية</a>
+                <a href="create-report.html">إضافة بلاغ</a>
+                <a href="my-reports.html">بلاغاتي</a>
+                <a href="map.html">الخريطة</a>
+                <a href="index.html" class="btn-logout-mobile">خروج</a>
+            </div>
+        </nav>
+
+        <!-- PAGE CONTENT -->
+        <main class="page-main">
+            <div class="container">
+
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div>
+                        <h1>بلاغاتي</h1>
+                        <p>جميع البلاغات التي قمت برفعها</p>
+                    </div>
+                    <a href="create-report.html" class="btn-green">
+                        <i class="fa-solid fa-plus"></i> بلاغ جديد
+                    </a>
+                </div>
+
+                <!-- Search & Filter Bar -->
+                <div class="toolbar">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="ابحث برقم البلاغ..."/>
+                        <button>بحث</button>
+                    </div>
+                    <div class="filter-btns">
+                        <button class="filter-btn active">الكل</button>
+                        <button class="filter-btn">قيد الانتظار</button>
+                        <button class="filter-btn">قيد المراجعة</button>
+                        <button class="filter-btn">تم الحل</button>
+                        <button class="filter-btn">مرفوض</button>
+                    </div>
+                </div>
+
+                <p class="results-count">عرض 6 بلاغات</p>
+
+                <!-- Reports Grid -->
+                <div class="reports-grid">
+
+                    <!-- REAL CARD -->
+                    <div class="report-card">
+                        <div class="card-img">
+                            <div class="img-placeholder">
+                                <i class="fa-solid fa-image"></i>
+                            </div>
+                            <span class="card-status pending">قيد الانتظار</span>
+                            <span class="card-category"><i class="fa-solid fa-car-burst"></i></span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-id">RPT-001</div>
+                            <h3>وقوف مخالف أمام مدخل</h3>
+                            <div class="card-meta">
+                                <span><i class="fa-solid fa-location-dot"></i> حي النزهة، الرياض</span>
+                                <span><i class="fa-solid fa-calendar"></i> 12 يناير 2025</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="report-detail.html" class="btn-view">
+                                <i class="fa-solid fa-eye"></i> عرض
+                            </a>
+                            <a href="edit-report.html" class="btn-edit">
+                                <i class="fa-solid fa-pen"></i> تعديل
+                            </a>
+                            <button class="btn-delete" onclick="document.getElementById('deleteModal').style.display='flex'">
+                                <i class="fa-solid fa-trash"></i> حذف
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- DUMMY CARD 2 -->
+                    <div class="report-card">
+                        <div class="card-img">
+                            <div class="img-placeholder">
+                                <i class="fa-solid fa-image"></i>
+                            </div>
+                            <span class="card-status resolved">تم الحل</span>
+                            <span class="card-category"><i class="fa-solid fa-person-walking"></i></span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-id">RPT-002</div>
+                            <h3>إشغال رصيف المشاة</h3>
+                            <div class="card-meta">
+                                <span><i class="fa-solid fa-location-dot"></i> حي العليا، الرياض</span>
+                                <span><i class="fa-solid fa-calendar"></i> 8 يناير 2025</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> عرض</a>
+                            <a href="#" class="btn-edit"><i class="fa-solid fa-pen"></i> تعديل</a>
+                            <button class="btn-delete" onclick="document.getElementById('deleteModal').style.display='flex'">
+                                <i class="fa-solid fa-trash"></i> حذف
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- DUMMY CARD 3 -->
+                    <div class="report-card">
+                        <div class="card-img">
+                            <div class="img-placeholder">
+                                <i class="fa-solid fa-image"></i>
+                            </div>
+                            <span class="card-status review">قيد المراجعة</span>
+                            <span class="card-category"><i class="fa-solid fa-truck-medical"></i></span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-id">RPT-003</div>
+                            <h3>سد مخرج طوارئ</h3>
+                            <div class="card-meta">
+                                <span><i class="fa-solid fa-location-dot"></i> حي الملز، الرياض</span>
+                                <span><i class="fa-solid fa-calendar"></i> 5 يناير 2025</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> عرض</a>
+                            <a href="#" class="btn-edit"><i class="fa-solid fa-pen"></i> تعديل</a>
+                            <button class="btn-delete" onclick="document.getElementById('deleteModal').style.display='flex'">
+                                <i class="fa-solid fa-trash"></i> حذف
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- DUMMY CARD 4 -->
+                    <div class="report-card">
+                        <div class="card-img">
+                            <div class="img-placeholder">
+                                <i class="fa-solid fa-image"></i>
+                            </div>
+                            <span class="card-status rejected">مرفوض</span>
+                            <span class="card-category"><i class="fa-solid fa-wheelchair"></i></span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-id">RPT-004</div>
+                            <h3>احتلال موقف ذوي الاحتياجات</h3>
+                            <div class="card-meta">
+                                <span><i class="fa-solid fa-location-dot"></i> حي السليمانية، الرياض</span>
+                                <span><i class="fa-solid fa-calendar"></i> 1 يناير 2025</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> عرض</a>
+                            <a href="#" class="btn-edit"><i class="fa-solid fa-pen"></i> تعديل</a>
+                            <button class="btn-delete" onclick="document.getElementById('deleteModal').style.display='flex'">
+                                <i class="fa-solid fa-trash"></i> حذف
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- DUMMY CARD 5 -->
+                    <div class="report-card">
+                        <div class="card-img">
+                            <div class="img-placeholder">
+                                <i class="fa-solid fa-image"></i>
+                            </div>
+                            <span class="card-status pending">قيد الانتظار</span>
+                            <span class="card-category"><i class="fa-solid fa-road-barrier"></i></span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-id">RPT-005</div>
+                            <h3>إعاقة حركة المرور</h3>
+                            <div class="card-meta">
+                                <span><i class="fa-solid fa-location-dot"></i> حي الروضة، الرياض</span>
+                                <span><i class="fa-solid fa-calendar"></i> 28 ديسمبر 2024</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> عرض</a>
+                            <a href="#" class="btn-edit"><i class="fa-solid fa-pen"></i> تعديل</a>
+                            <button class="btn-delete" onclick="document.getElementById('deleteModal').style.display='flex'">
+                                <i class="fa-solid fa-trash"></i> حذف
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- DUMMY CARD 6 -->
+                    <div class="report-card">
+                        <div class="card-img">
+                            <div class="img-placeholder">
+                                <i class="fa-solid fa-image"></i>
+                            </div>
+                            <span class="card-status resolved">تم الحل</span>
+                            <span class="card-category"><i class="fa-solid fa-car-burst"></i></span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-id">RPT-006</div>
+                            <h3>وقوف في منطقة ممنوعة</h3>
+                            <div class="card-meta">
+                                <span><i class="fa-solid fa-location-dot"></i> حي الورود، الرياض</span>
+                                <span><i class="fa-solid fa-calendar"></i> 20 ديسمبر 2024</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> عرض</a>
+                            <a href="#" class="btn-edit"><i class="fa-solid fa-pen"></i> تعديل</a>
+                            <button class="btn-delete" onclick="document.getElementById('deleteModal').style.display='flex'">
+                                <i class="fa-solid fa-trash"></i> حذف
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- Delete Modal -->
+        <div class="modal-overlay" id="deleteModal" style="display:none;">
+            <div class="modal">
+                <div class="modal-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h3>هل أنت متأكد؟</h3>
+                <p>سيتم حذف هذا البلاغ نهائياً ولا يمكن التراجع عن هذا الإجراء</p>
+                <div class="modal-actions">
+                    <button class="btn-cancel" onclick="document.getElementById('deleteModal').style.display='none'">
+                        إلغاء
+                    </button>
+                    <button class="btn-confirm-delete" onclick="document.getElementById('deleteModal').style.display='none'">
+                        حذف
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="../Images/logo.png" alt="عينك"/>
+                    <p>منصة مجتمعية للإبلاغ عن مخالفات المدن في المملكة العربية السعودية</p>
+                </div>
+                <div class="footer-links">
+                    <h5>روابط</h5>
+                    <a href="dashboard.html">الرئيسية</a>
+                    <a href="create-report.html">إضافة بلاغ</a>
+                    <a href="my-reports.html">بلاغاتي</a>
+                    <a href="map.html">الخريطة</a>
+                </div>
+                <div class="footer-links">
+                    <h5>تواصل معنا</h5>
+                    <span><i class="fa-solid fa-envelope"></i> support@aynek.sa</span>
+                    <span><i class="fa-solid fa-location-dot"></i> المملكة العربية السعودية</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2025 — عينك</p>
+            </div>
+        </footer>
+
+    </body>
+</html>

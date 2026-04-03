@@ -1,0 +1,340 @@
+/* =====================
+   Page Layout
+===================== */
+.page-main {
+    padding: 2.5rem 0 4rem;
+    min-height: calc(100vh - 70px);
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.page-header h1 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--green);
+    margin-bottom: 0.2rem;
+}
+
+.page-header p {
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin: 0;
+}
+
+/* =====================
+   Navbar Extras
+===================== */
+.nav-links a.active {
+    background: rgba(239,237,212,0.15);
+    color: var(--sand);
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-right: auto;
+    color: rgba(239,237,212,0.75);
+    font-size: 0.92rem;
+}
+
+.nav-user i {
+    font-size: 1.1rem;
+    color: var(--sand-dark);
+}
+
+.btn-logout {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.85rem;
+    border: 1.5px solid rgba(239,237,212,0.25);
+    border-radius: 6px;
+    color: rgba(239,237,212,0.7);
+    font-size: 0.87rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    margin-right: 0.5rem;
+}
+
+.btn-logout:hover {
+    border-color: var(--sand);
+    color: var(--sand);
+}
+
+.btn-logout-mobile {
+    margin-top: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    color: rgba(239,237,212,0.7) !important;
+    border-top: 1px solid rgba(239,237,212,0.1);
+}
+
+/* =====================
+   Back Button
+===================== */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.btn-back:hover {
+    color: var(--green);
+}
+
+/* =====================
+   Form Wrapper
+===================== */
+.form-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 700px;
+}
+
+/* =====================
+   Form Groups
+===================== */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.form-group label i {
+    color: var(--green-mid);
+    font-size: 0.9rem;
+    width: 16px;
+}
+
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--bg);
+    direction: rtl;
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+.form-group input[type="text"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--green);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--muted);
+}
+
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* =====================
+   Image Upload
+===================== */
+.upload-area {
+    border: 2px dashed var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--bg);
+}
+
+.upload-area:hover {
+    border-color: var(--green);
+    background: rgba(13,52,33,0.03);
+}
+
+.upload-area i {
+    font-size: 2rem;
+    color: var(--green-mid);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.upload-area p {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.25rem;
+}
+
+.upload-area span {
+    font-size: 0.82rem;
+    color: var(--muted);
+}
+
+/* =====================
+   Location Row
+===================== */
+.location-row {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.location-row input {
+    flex: 1;
+    padding: 0.7rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--bg);
+    direction: rtl;
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+.location-row input:focus {
+    border-color: var(--green);
+}
+
+.location-row input::placeholder {
+    color: var(--muted);
+}
+
+.btn-detect {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--green);
+    color: var(--sand);
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.1rem;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.btn-detect:hover {
+    background: var(--green-mid);
+}
+
+/* =====================
+   Form Submit
+===================== */
+.form-submit {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.btn-cancel-form {
+    padding: 0.65rem 1.5rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.btn-cancel-form:hover {
+    border-color: var(--text);
+    color: var(--text);
+}
+
+.btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--green);
+    color: var(--sand);
+    border: none;
+    border-radius: 8px;
+    padding: 0.65rem 1.75rem;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.97rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-submit:hover {
+    background: var(--green-mid);
+}
+
+/* =====================
+   Responsive
+===================== */
+@media (max-width: 900px) {
+    .nav-user {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-wrapper {
+        padding: 1.25rem;
+    }
+
+    .location-row {
+        flex-direction: column;
+    }
+
+    .form-submit {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .btn-cancel-form,
+    .btn-submit {
+        text-align: center;
+        justify-content: center;
+    }
+}

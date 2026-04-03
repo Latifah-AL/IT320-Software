@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Cairo:wght@700;800&display=swap');
+
+/* =====================
+   Variables
+===================== */
+:root {
+  --green:      #0d3421;
+  --green-mid:  #2D6A4F;
+  --sand:       #EFEDD4;
+  --sand-dark:  #D9D5B0;
+  --bg:         #F4F2E4;
+  --surface:    #FFFFFF;
+  --border:     #D9D5B0;
+  --text:       #1A2C1E;
+  --muted:      #5A6B5E;
+}
+
+/* =====================
+   Reset
+===================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  direction: rtl;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =====================
+   Layout
+===================== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 4.5rem 0;
+}
+
+.bg-sand {
+  background: var(--sand);
+}
+
+/* =====================
+   Typography
+===================== */
+h2 {
+  font-family: 'Cairo', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: 0.75rem;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--green-mid);
+  background: rgba(26,77,46,0.08);
+  border: 1px solid rgba(26,77,46,0.15);
+  padding: 0.18rem 0.8rem;
+  border-radius: 20px;
+  margin-bottom: 0.6rem;
+}
+
+.section-label.light {
+  color: var(--sand);
+  background: rgba(239,237,212,0.15);
+  border-color: rgba(239,237,212,0.2);
+}
+
+.section-desc {
+  color: var(--muted);
+  font-size: 0.97rem;
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+}
+
+.light-h2 {
+  color: var(--sand);
+}
+
+/* =====================
+   Buttons
+===================== */
+.btn-green {
+  display: inline-block;
+  background: var(--green);
+  color: var(--sand);
+  padding: 0.65rem 1.5rem;
+  border-radius: 8px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+
+.btn-green:hover {
+  background: var(--green-mid);
+  color: var(--sand);
+}
+
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: rgba(239,237,212,0.85);
+  border: 1.5px solid rgba(239,237,212,0.4);
+  padding: 0.65rem 1.5rem;
+  border-radius: 8px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-outline:hover {
+  border-color: var(--sand);
+  color: var(--sand);
+}
+
+.btn-outline-dark {
+  display: inline-block;
+  background: transparent;
+  color: var(--green);
+  border: 1.5px solid var(--green);
+  padding: 0.65rem 1.5rem;
+  border-radius: 8px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-outline-dark:hover {
+  background: var(--green);
+  color: var(--sand);
+}
+
+/* =====================
+   Navbar
+===================== */
+.navbar {
+  background: var(--green);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo img {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.nav-links a {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  color: rgba(239,237,212,0.7);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover {
+  background: rgba(239,237,212,0.1);
+  color: var(--sand);
+}
+
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-right: auto;
+}
+
+.nav-auth a:first-child {
+  color: rgba(239,237,212,0.7);
+  font-size: 0.92rem;
+  transition: color 0.2s;
+}
+
+.nav-auth a:first-child:hover {
+  color: var(--sand);
+}
+
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--sand);
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-right: auto;
+}
+
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  padding: 0.75rem 1.5rem 1.25rem;
+  gap: 0.25rem;
+  border-top: 1px solid rgba(239,237,212,0.1);
+}
+
+.mobile-nav.open {
+  display: flex;
+}
+
+.mobile-nav a {
+  padding: 0.6rem 0.75rem;
+  color: rgba(239,237,212,0.7);
+  border-radius: 6px;
+  font-size: 0.97rem;
+  transition: all 0.2s;
+}
+
+.mobile-nav a:hover {
+  background: rgba(239,237,212,0.1);
+  color: var(--sand);
+}
+
+.mobile-nav .btn-green {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* =====================
+   Footer
+===================== */
+.footer {
+  background: #0C1D12;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2.5rem;
+  padding: 3rem 1.5rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-brand img {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+}
+
+.footer-brand p {
+  font-size: 0.86rem;
+  color: rgba(239,237,212,0.4);
+  margin: 0;
+  max-width: 260px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-links h5 {
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.9rem;
+  color: var(--sand-dark);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(239,237,212,0.08);
+}
+
+.footer-links a {
+  font-size: 0.87rem;
+  color: rgba(239,237,212,0.5);
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--sand);
+}
+
+.footer-links span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.87rem;
+  color: rgba(239,237,212,0.5);
+}
+
+.footer-links span i {
+  color: var(--sand-dark);
+  font-size: 0.8rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(239,237,212,0.07);
+  text-align: center;
+  padding: 1rem;
+}
+
+.footer-bottom p {
+  font-size: 0.82rem;
+  color: rgba(239,237,212,0.25);
+  margin: 0;
+}
+
+/* =====================
+   Responsive
+===================== */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-auth {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 1.45rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+}
