@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عينك - إنشاء حساب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../CSS/loginsignup.css" />
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="Logo.png" alt="عينك"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+    <div class="nav-logo-fallback" style="display:none">ع</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="login.html">تسجيل الدخول</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="card">
+    <div class="card-header">
+  
+      <div class="card-logo-fallback" style="display:none">ع</div>
+      <h1 class="card-title">إنشاء حساب جديد</h1>
+      <p class="card-sub">انضم إلى مجتمع عينك وساهم في تحسين مدينتك</p>
+    </div>
+
+    <form id="signup-form" onsubmit="handleSignup(event)" novalidate>
+
+      <!-- Name row -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">الاسم الأول</label>
+          <input type="text" id="fname" placeholder="مثال: سارة" required />
+        </div>
+        <div class="form-group">
+          <label for="lname">اسم العائلة</label>
+          <input type="text" id="lname" placeholder="مثال: العمري" required />
+        </div>
+      </div>
+
+      <!-- Username -->
+      <div class="form-group">
+        <label for="username">اسم المستخدم</label>
+        <input type="text" id="username" placeholder="مثال: sara_2026" required />
+        <span class="hint">يستخدم لتسجيل الدخول — لا يمكن تغييره لاحقاً</span>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">البريد الإلكتروني</label>
+        <input type="email" id="email" placeholder="example@domain.com" required />
+      </div>
+
+      <!-- Phone -->
+      <div class="form-group">
+        <label for="phone">رقم الجوال</label>
+        <input type="tel" id="phone" placeholder="05XXXXXXXX" maxlength="10" required />
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">كلمة المرور</label>
+        <input type="password" id="password" placeholder="••••••••" required
+               oninput="checkStrength(this.value)" />
+        <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
+        <span class="hint" id="strength-label">أدخل كلمة المرور</span>
+      </div>
+
+      <!-- Confirm password -->
+      <div class="form-group">
+        <label for="confirm">تأكيد كلمة المرور</label>
+        <input type="password" id="confirm" placeholder="••••••••" required />
+        <span class="hint" id="match-hint"></span>
+      </div>
+
+      <!-- Terms -->
+      <div class="terms-row">
+        <input type="checkbox" id="terms" required />
+        <label for="terms">
+          أوافق على <a href="#">شروط الاستخدام</a> و<a href="#">سياسة الخصوصية</a>
+        </label>
+      </div>
+
+      <button type="submit" class="btn-submit">إنشاء الحساب</button>
+    </form>
+
+    <div class="divider"><span>أو</span></div>
+
+    <div class="card-footer">
+      لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
+    </div>
+  </div>
+</main>
+
+<footer>&copy; 2026 عينك — جامعة الملك سعود · IT 320</footer>
+
+<script>
+  function checkStrength(val) {
+    const fill = document.getElementById('strength-fill');
+    const label = document.getElementById('strength-label');
+    let score = 0;
+    if (val.length >= 8)           score++;
+    if (/[A-Z]/.test(val))         score++;
+    if (/[0-9]/.test(val))         score++;
+    if (/[^A-Za-z0-9]/.test(val))  score++;
+
+    const levels = [
+      { pct: '0%',  color: 'transparent', text: 'أدخل كلمة المرور' },
+      { pct: '30%', color: '#c0392b',     text: '⚠ ضعيفة جداً' },
+      { pct: '55%', color: '#e67e22',     text: '△ مقبولة' },
+      { pct: '78%', color: '#2980b9',     text: '✓ جيدة' },
+      { pct: '100%',color: '#27ae60',     text: '✓ قوية جداً' },
+    ];
+
+    const lvl = val.length === 0 ? levels[0] : levels[score] || levels[4];
+    fill.style.width    = lvl.pct;
+    fill.style.background = lvl.color;
+    label.textContent   = lvl.text;
+  }
+
+  document.getElementById('confirm').addEventListener('input', function() {
+    const hint = document.getElementById('match-hint');
+    const pw = document.getElementById('password').value;
+    if (!this.value) { hint.textContent = ''; hint.className = 'hint'; return; }
+    if (this.value === pw) {
+      hint.textContent = '✓ كلمتا المرور متطابقتان';
+      hint.className = 'hint';
+      hint.style.color = '#27ae60';
+    } else {
+      hint.textContent = '✗ كلمتا المرور غير متطابقتين';
+      hint.className = 'hint err';
+      hint.style.color = '';
+    }
+  });
+
+  function handleSignup(e) {
+    e.preventDefault();
+    const pw = document.getElementById('password').value;
+    const cf = document.getElementById('confirm').value;
+    if (pw !== cf) {
+      alert('كلمتا المرور غير متطابقتين!');
+      return;
+    }
+    if (!document.getElementById('terms').checked) {
+      alert('يجب الموافقة على الشروط والأحكام أولاً.');
+      return;
+    }
+    // Success → redirect (wire to backend later)
+    alert('تم إنشاء الحساب بنجاح! جارٍ تحويلك لتسجيل الدخول...');
+    window.location.href = 'login.html';
+  }
+</script>
+</body>
+</html>

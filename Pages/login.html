@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عينك - تسجيل الدخول</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../CSS/loginsignup.css" />
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="../Images/Logo.png" alt="عينك"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+    <div class="nav-logo-fallback" style="display:none">ع</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="signup.html">إنشاء حساب</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="card">
+    <div class="card-header">
+   
+      <div class="card-logo-fallback" style="display:none">ع</div>
+      <h1 class="card-title">تسجيل الدخول</h1>
+      <p class="card-sub">مرحباً بك في منصة عينك</p>
+    </div>
+
+    <!-- Role toggle -->
+    <div class="role-toggle">
+      <button class="role-btn active" onclick="setRole('user', this)">👤 مستخدم</button>
+      <button class="role-btn"        onclick="setRole('admin', this)">🛡️ مشرف</button>
+    </div>
+
+    <div id="admin-badge" style="text-align:center; display:none;">
+      <span class="admin-badge">🔐 وضع المشرف</span>
+    </div>
+
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label for="username">اسم المستخدم أو البريد الإلكتروني</label>
+        <input type="text" id="username" placeholder="أدخل اسم المستخدم أو بريدك الإلكتروني" required />
+      </div>
+      <div class="form-group">
+        <label for="password">كلمة المرور</label>
+        <input type="password" id="password" placeholder="••••••••" required />
+        <div class="forgot"><a href="#">نسيت كلمة المرور؟</a></div>
+      </div>
+
+      <button type="submit" class="btn-submit">دخول</button>
+    </form>
+
+    <div class="divider"><span>أو</span></div>
+
+    <div class="card-footer">
+      ليس لديك حساب؟ <a href="signup.html">أنشئ حساباً الآن</a>
+    </div>
+  </div>
+</main>
+
+<footer>&copy; 2026 عينك — جامعة الملك سعود · IT 320</footer>
+
+<script>
+  let currentRole = 'user';
+
+  function setRole(role, btn) {
+    currentRole = role;
+    document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('admin-badge').style.display = role === 'admin' ? 'block' : 'none';
+  }
+
+  function handleLogin(e) {
+    e.preventDefault();
+    // Redirect based on role (wire to backend later)
+    if (currentRole === 'admin') {
+      alert('تسجيل دخول المشرف — يتم التحقق من البيانات...');
+    } else {
+      window.location.href = 'my-reports.html'; // placeholder
+    }
+  }
+</script>
+</body>
+</html>
