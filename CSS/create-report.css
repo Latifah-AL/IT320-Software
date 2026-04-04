@@ -262,7 +262,7 @@ input[type="datetime-local"] {
     width: 100%;
     padding: 0.7rem 1rem;
     border: 1.5px solid var(--border);
-    border-radius: 8px;
+    border-radius: 8px; 
     font-family: 'Tajawal', sans-serif;
     font-size: 0.95rem;
     color: var(--text);

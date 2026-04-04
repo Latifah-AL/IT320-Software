@@ -276,7 +276,7 @@ h2 {
    Footer
 ===================== */
 .footer {
-  background: #0C1D12;
+  background: var(--green);
 }
 
 .footer-inner {

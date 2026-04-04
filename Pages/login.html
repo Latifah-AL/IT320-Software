@@ -7,26 +7,44 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../CSS/loginsignup.css" />
+  <link rel="stylesheet" href="../CSS/loginsignup.css" />
+  <link rel="stylesheet" href="../CSS/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
 
-<nav>
-  <a class="nav-logo" href="index.html">
-    <img src="../Images/Logo.png" alt="عينك"
-         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-    <div class="nav-logo-fallback" style="display:none">ع</div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">الرئيسية</a></li>
-    <li><a href="signup.html">إنشاء حساب</a></li>
-  </ul>
-</nav>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">
+                <img src="../Images/logo.png" alt="عينك"/>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="index.html#features">المميزات</a></li>
+                <li><a href="index.html#violations">المخالفات</a></li>
+            </ul>
+            <div class="nav-auth">
+                <a href="signup.html" >إنشاء حساب</a>
+                <a href="login.html" class="btn-green">تسجيل الدخول</a>
+
+            </div>
+            <button class="burger" id="burger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="index.html">الرئيسية</a>
+            <a href="index.html#features">المميزات</a>
+            <a href="index.html#violations">المخالفات</a>
+            <a href="signup.html" >إنشاء حساب</a>
+            <a href="login.html" class="btn-green">تسجيل الدخول</a>
+        </div>
+    </nav>
 
 <main>
   <div class="card">
     <div class="card-header">
-   
       <div class="card-logo-fallback" style="display:none">ع</div>
       <h1 class="card-title">تسجيل الدخول</h1>
       <p class="card-sub">مرحباً بك في منصة عينك</p>
@@ -64,7 +82,31 @@
   </div>
 </main>
 
-<footer>&copy; 2026 عينك — جامعة الملك سعود · IT 320</footer>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../Images/logo.png" alt="عينك"/>
+                <p>منصة مجتمعية للإبلاغ عن مخالفات المدن في المملكة العربية السعودية</p>
+            </div>
+            <div class="footer-links">
+                <h5>روابط</h5>
+                <a href="index.html">الرئيسية</a>
+                <a href="index.html#features">المميزات</a>
+                <a href="index.html#violations">المخالفات</a>
+                <a href="login.html">تسجيل الدخول</a>
+                <a href="signup.html">إنشاء حساب</a>
+            </div>
+            <div class="footer-links">
+                <h5>تواصل معنا</h5>
+                <span><i class="fa-solid fa-envelope"></i> support@aynek.sa</span>
+                <span><i class="fa-solid fa-location-dot"></i> المملكة العربية السعودية</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>جميع الحقوق محفوظة &copy; 2025 — عينك</p>
+        </div>
+    </footer>
 
 <script>
   let currentRole = 'user';
@@ -78,13 +120,16 @@
 
   function handleLogin(e) {
     e.preventDefault();
-    // Redirect based on role (wire to backend later)
-if (currentRole === 'admin') {
-  window.location.href = 'admin-dashboard.html';
-} else {
-  window.location.href = 'my-reports.html';
-}
+    if (currentRole === 'admin') {
+      window.location.href = 'admin-dashboard.html';
+    } else {
+      window.location.href = 'my-reports.html';
+    }
   }
+
+  document.getElementById('burger').addEventListener('click', function () {
+      document.getElementById('mobileNav').classList.toggle('open');
+  });
 </script>
 </body>
 </html>

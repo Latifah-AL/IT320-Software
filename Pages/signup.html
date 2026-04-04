@@ -8,20 +8,37 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../CSS/loginsignup.css" />
+    <link rel="stylesheet" href="../CSS/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
-
-<nav>
-  <a class="nav-logo" href="index.html">
-    <img src="../Images/Logo.png" alt="عينك"
-         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-    <div class="nav-logo-fallback" style="display:none">ع</div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html">الرئيسية</a></li>
-    <li><a href="login.html">تسجيل الدخول</a></li>
-  </ul>
-</nav>
+      <!-- NAVBAR -->
+      <nav class="navbar">
+      <div class="nav-inner">
+      <a href="index.html" class="logo">
+                    <img src="../Images/logo.png" alt="عينك"/>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="index.html#features">المميزات</a></li>
+                    <li><a href="index.html#violations">المخالفات</a></li>
+                </ul>
+                <div class="nav-auth">
+                    <a href="login.html">تسجيل الدخول</a>
+                    <a href="signup.html" class="btn-green">إنشاء حساب</a>
+                </div>
+                <button class="burger" id="burger">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <div class="mobile-nav" id="mobileNav">
+                <a href="index.html">الرئيسية</a>
+                <a href="index.html#features">المميزات</a>
+                <a href="index.html#violations">المخالفات</a>
+                <a href="login.html">تسجيل الدخول</a>
+                <a href="signup.html" class="btn-green">إنشاء حساب</a>
+            </div>
+        </nav>
 
 <main>
   <div class="card">
@@ -65,6 +82,28 @@
         <input type="tel" id="phone" placeholder="05XXXXXXXX" maxlength="10" required />
       </div>
 
+      <!-- National ID -->
+      <div class="form-group">
+          <label for="nationalid">رقم الهوية الوطنية</label>
+          <input type="text" id="nationalid" placeholder="1XXXXXXXXX" maxlength="10" required />
+      </div>
+
+      <!-- Nationality -->
+      <div class="form-group">
+          <label for="nationality">الجنسية</label>
+          <select id="nationality" required>
+              <option value="" disabled selected>اختر الجنسية</option>
+              <option value="sa">سعودي</option>
+              <option value="other">غير سعودي</option>
+          </select>
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="form-group">
+          <label for="dob">تاريخ الميلاد</label>
+          <input type="date" id="dob" required />
+      </div>
+
       <!-- Password -->
       <div class="form-group">
         <label for="password">كلمة المرور</label>
@@ -100,63 +139,93 @@
   </div>
 </main>
 
-<footer>&copy; 2026 عينك — جامعة الملك سعود · IT 320</footer>
+<!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="../Images/logo.png" alt="عينك"/>
+                    <p>منصة مجتمعية للإبلاغ عن مخالفات المدن في المملكة العربية السعودية</p>
+                </div>
+                <div class="footer-links">
+                    <h5>روابط</h5>
+                    <a href="index.html">الرئيسية</a>
+                    <a href="index.html#features">المميزات</a>
+                    <a href="index.html#violations">المخالفات</a>
+                    <a href="login.html">تسجيل الدخول</a>
+                    <a href="signup.html">إنشاء حساب</a>
+                </div>
+                <div class="footer-links">
+                    <h5>تواصل معنا</h5>
+                    <span><i class="fa-solid fa-envelope"></i> support@aynek.sa</span>
+                    <span><i class="fa-solid fa-location-dot"></i> المملكة العربية السعودية</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2025 — عينك</p>
+            </div>
+        </footer>
 
-<script>
-  function checkStrength(val) {
-    const fill = document.getElementById('strength-fill');
-    const label = document.getElementById('strength-label');
-    let score = 0;
-    if (val.length >= 8)           score++;
-    if (/[A-Z]/.test(val))         score++;
-    if (/[0-9]/.test(val))         score++;
-    if (/[^A-Za-z0-9]/.test(val))  score++;
+        <script>
+            // Mobile menu
+            document.getElementById('burger').addEventListener('click', function () {
+                document.getElementById('mobileNav').classList.toggle('open');
+            });
 
-    const levels = [
-      { pct: '0%',  color: 'transparent', text: 'أدخل كلمة المرور' },
-      { pct: '30%', color: '#c0392b',     text: '⚠ ضعيفة جداً' },
-      { pct: '55%', color: '#e67e22',     text: '△ مقبولة' },
-      { pct: '78%', color: '#2980b9',     text: '✓ جيدة' },
-      { pct: '100%',color: '#27ae60',     text: '✓ قوية جداً' },
-    ];
+            // Password strength
+            function checkStrength(val) {
+                var fill  = document.getElementById('strength-fill');
+                var label = document.getElementById('strength-label');
+                var score = 0;
+                if (val.length >= 8)          score++;
+                if (/[A-Z]/.test(val))        score++;
+                if (/[0-9]/.test(val))        score++;
+                if (/[^A-Za-z0-9]/.test(val)) score++;
 
-    const lvl = val.length === 0 ? levels[0] : levels[score] || levels[4];
-    fill.style.width    = lvl.pct;
-    fill.style.background = lvl.color;
-    label.textContent   = lvl.text;
-  }
+                var levels = [
+                    { pct: '0%',   color: 'transparent', text: 'أدخل كلمة المرور' },
+                    { pct: '30%',  color: '#c0392b',     text: 'ضعيفة جداً' },
+                    { pct: '55%',  color: '#e67e22',     text: 'مقبولة' },
+                    { pct: '78%',  color: '#2980b9',     text: 'جيدة' },
+                    { pct: '100%', color: '#27ae60',     text: 'قوية جداً' },
+                ];
 
-  document.getElementById('confirm').addEventListener('input', function() {
-    const hint = document.getElementById('match-hint');
-    const pw = document.getElementById('password').value;
-    if (!this.value) { hint.textContent = ''; hint.className = 'hint'; return; }
-    if (this.value === pw) {
-      hint.textContent = '✓ كلمتا المرور متطابقتان';
-      hint.className = 'hint';
-      hint.style.color = '#27ae60';
-    } else {
-      hint.textContent = '✗ كلمتا المرور غير متطابقتين';
-      hint.className = 'hint err';
-      hint.style.color = '';
-    }
-  });
+                var lvl = val.length === 0 ? levels[0] : levels[score] || levels[4];
+                fill.style.width      = lvl.pct;
+                fill.style.background = lvl.color;
+                label.textContent     = lvl.text;
+            }
 
-  function handleSignup(e) {
-    e.preventDefault();
-    const pw = document.getElementById('password').value;
-    const cf = document.getElementById('confirm').value;
-    if (pw !== cf) {
-      alert('كلمتا المرور غير متطابقتين!');
-      return;
-    }
-    if (!document.getElementById('terms').checked) {
-      alert('يجب الموافقة على الشروط والأحكام أولاً.');
-      return;
-    }
-    // Success → redirect (wire to backend later)
-    alert('تم إنشاء الحساب بنجاح! جارٍ تحويلك لتسجيل الدخول...');
-    window.location.href = 'login.html';
-  }
-</script>
-</body>
+            // Password match
+            document.getElementById('confirm').addEventListener('input', function () {
+                var hint = document.getElementById('match-hint');
+                var pw   = document.getElementById('password').value;
+                if (!this.value) { hint.textContent = ''; return; }
+                if (this.value === pw) {
+                    hint.textContent = '✓ كلمتا المرور متطابقتان';
+                    hint.style.color = '#27ae60';
+                } else {
+                    hint.textContent = '✗ كلمتا المرور غير متطابقتين';
+                    hint.style.color = '#c0392b';
+                }
+            });
+
+            // Submit
+            function handleSignup(e) {
+                e.preventDefault();
+                var pw = document.getElementById('password').value;
+                var cf = document.getElementById('confirm').value;
+                if (pw !== cf) {
+                    alert('كلمتا المرور غير متطابقتين!');
+                    return;
+                }
+                if (!document.getElementById('terms').checked) {
+                    alert('يجب الموافقة على الشروط والأحكام أولاً.');
+                    return;
+                }
+                alert('تم إنشاء الحساب بنجاح!');
+                window.location.href = 'login.html';
+            }
+        </script>
+
+    </body>
 </html>

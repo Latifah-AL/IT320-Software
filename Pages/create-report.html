@@ -24,8 +24,10 @@
                     <li><a href="map.html">الخريطة</a></li>
                 </ul>
                 <div class="nav-user">
-                    <i class="fa-solid fa-circle-user"></i>
-                    <span>لطيفة</span>
+                    <a href="profile.html" class="nav-username">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>لطيفة</span>
+                    </a>
                     <a href="index.html" class="btn-logout">
                         <i class="fa-solid fa-right-from-bracket"></i> خروج
                     </a>
@@ -135,12 +137,9 @@
                                 <i class="fa-solid fa-location-dot"></i> الموقع
                             </label>
                             <div class="location-row">
-                                <input
-                                    type="text"
-                                    id="location"
-                                    name="location"
-                                    placeholder="مثال: حي النزهة، الرياض"
-                                />
+                                <input type="text" id="location" name="location" placeholder="مثال: النزهة، شارع القادسية، الرياض">
+                                <input type="hidden" id="lat" name="lat"/>
+                                <input type="hidden" id="lng" name="lng"/>
                                 <button type="button" class="btn-detect">
                                     <i class="fa-solid fa-crosshairs"></i> تحديد تلقائي
                                 </button>
@@ -192,6 +191,6 @@
                 <p>جميع الحقوق محفوظة &copy; 2025 — عينك</p>
             </div>
         </footer>
-
+        <script src="../JavaScript/create-report.js"></script>
     </body>
 </html>

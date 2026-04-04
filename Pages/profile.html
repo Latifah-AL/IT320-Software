@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>عينك — الملف الشخصي</title>
+        <link rel="stylesheet" href="../CSS/main.css"/>
+        <link rel="stylesheet" href="../CSS/profile.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Cairo:wght@700;800&display=swap" rel="stylesheet"/>
+    </head>
+    <body>
+
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="nav-inner">
+                <a href="index.html" class="logo">
+                    <img src="../Images/logo.png" alt="عينك"/>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html">الرئيسية</a></li>
+                    <li><a href="create-report.html">إضافة بلاغ</a></li>
+                    <li><a href="my-reports.html">بلاغاتي</a></li>
+                    <li><a href="map.html">الخريطة</a></li>
+                </ul>
+                <div class="nav-user">
+                    <a href="profile.html" class="nav-username">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>لطيفة</span>
+                    </a>
+                    <a href="index.html" class="btn-logout">
+                        <i class="fa-solid fa-right-from-bracket"></i> خروج
+                    </a>
+                </div>
+                <button class="burger" id="burger">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <div class="mobile-nav" id="mobileNav">
+                <a href="dashboard.html">الرئيسية</a>
+                <a href="create-report.html">إضافة بلاغ</a>
+                <a href="my-reports.html">بلاغاتي</a>
+                <a href="map.html">الخريطة</a>
+                <a href="index.html" class="btn-logout-mobile">خروج</a>
+            </div>
+        </nav>
+
+        <!-- PAGE CONTENT -->
+        <main class="page-main">
+            <div class="container">
+
+                <div class="page-header">
+                    <h1>الملف الشخصي</h1>
+                </div>
+
+                <div class="profile-layout">
+
+                    <!-- Left -->
+                    <div class="profile-main">
+
+                        <!-- Personal Info -->
+                        <div class="profile-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-user"></i>
+                                <h2>المعلومات الشخصية</h2>
+                            </div>
+                            <div class="info-list">
+                                <div class="info-row">
+                                    <span class="info-label">الاسم الأول</span>
+                                    <span class="info-value">لطيفة</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">اسم العائلة</span>
+                                    <span class="info-value">الموسى</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">اسم المستخدم</span>
+                                    <div class="info-value-group">
+                                        <span class="info-value">latifah_m</span>
+                                        <span class="info-note">يستخدم لتسجيل الدخول — لا يمكن تغييره</span>
+                                    </div>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">البريد الإلكتروني</span>
+                                    <span class="info-value">latifah@email.com</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">رقم الجوال</span>
+                                    <span class="info-value ltr">+966 50 000 0000</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">رقم الهوية الوطنية</span>
+                                    <span class="info-value ltr">1000000000</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">الجنسية</span>
+                                    <span class="info-value">سعودي</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">تاريخ الميلاد</span>
+                                    <span class="info-value ltr">2000-01-01</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Last Report -->
+                        <div class="profile-card last-report-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                <h2>آخر بلاغ</h2>
+                            </div>
+                            <div class="last-report-body">
+                                <div class="last-report-top">
+                                    <span class="last-report-id">RPT-001</span>
+                                    <span class="card-status pending">قيد الانتظار</span>
+                                </div>
+                                <h3>وقوف مخالف أمام مدخل</h3>
+                                <div class="last-report-meta">
+                                    <span>
+                                        <i class="fa-solid fa-location-dot"></i> حي النزهة، الرياض
+                                    </span>
+                                    <span>
+                                        <i class="fa-solid fa-calendar"></i> 12 يناير 2025
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="last-report-footer">
+                                <a href="report-detail.html" class="btn-view-report">
+                                    <i class="fa-solid fa-eye"></i> عرض البلاغ
+                                </a>
+                                <a href="my-reports.html" class="btn-all-reports">
+                                    عرض جميع بلاغاتي <i class="fa-solid fa-arrow-left"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right -->
+                    <div class="profile-side">
+
+                        <!-- Points -->
+                        <div class="points-card">
+                            <div class="points-top">
+                                <i class="fa-solid fa-trophy"></i>
+                                <div>
+                                    <p class="points-label">نقاطي</p>
+                                    <p class="points-value">250 <span>نقطة</span></p>
+                                </div>
+                            </div>
+                            <div class="points-bar">
+                                <div class="points-fill" style="width:50%;"></div>
+                            </div>
+                            <p class="points-hint">250 / 500 للوصول للمستوى التالي</p>
+                        </div>
+
+                        <!-- Stats -->
+                        <div class="profile-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-chart-simple"></i>
+                                <h2>إحصائياتي</h2>
+                            </div>
+                            <div class="stats-list">
+                                <div class="stat-row">
+                                    <span class="stat-label">إجمالي البلاغات</span>
+                                    <span class="stat-num">6</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">قيد الانتظار</span>
+                                    <span class="stat-num pending">2</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">قيد المراجعة</span>
+                                    <span class="stat-num review">1</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">تم الحل</span>
+                                    <span class="stat-num resolved">2</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">مرفوض</span>
+                                    <span class="stat-num rejected">1</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="../Images/logo.png" alt="عينك"/>
+                    <p>منصة مجتمعية للإبلاغ عن مخالفات المدن في المملكة العربية السعودية</p>
+                </div>
+                <div class="footer-links">
+                    <h5>روابط</h5>
+                    <a href="dashboard.html">الرئيسية</a>
+                    <a href="create-report.html">إضافة بلاغ</a>
+                    <a href="my-reports.html">بلاغاتي</a>
+                    <a href="map.html">الخريطة</a>
+                </div>
+                <div class="footer-links">
+                    <h5>تواصل معنا</h5>
+                    <span><i class="fa-solid fa-envelope"></i> support@aynek.sa</span>
+                    <span><i class="fa-solid fa-location-dot"></i> المملكة العربية السعودية</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2025 — عينك</p>
+            </div>
+        </footer>
+
+    </body>
+</html>
