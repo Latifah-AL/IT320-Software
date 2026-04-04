@@ -219,10 +219,17 @@
     height: 100%;
     background: var(--bg);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0.5rem;
     color: var(--border);
     font-size: 2.5rem;
+}
+
+.img-placeholder span {
+    font-size: 0.82rem;
+    color: var(--muted);
 }
 
 .card-status {

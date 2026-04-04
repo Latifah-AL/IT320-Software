@@ -103,14 +103,13 @@
                             <div class="current-image">
                                 <img src="../Images/re1.jpeg" alt="وقوف مخالف أمام مدخل"/>
                             </div>
-                            <div class="upload-area">
+                            <div class="upload-area" onclick="document.getElementById('imageInput').click()">
                                 <i class="fa-solid fa-cloud-arrow-up"></i>
                                 <p>اضغط لتغيير الصورة</p>
                                 <span>PNG, JPG حتى 5MB</span>
-                                <input type="file" id="imageInput" name="image" accept="image/*" hidden/>
+                                <input type="file" id="imageInput" name="image" accept="image/*" hidden>
                             </div>
                         </div>
-
                         <!-- Location -->
                         <div class="form-group">
                             <label>
@@ -177,6 +176,7 @@
                 <p>جميع الحقوق محفوظة &copy; 2025 — عينك</p>
             </div>
         </footer>
+        
         <script src="../JavaScript/create-report.js"></script>
     </body>
 </html>
