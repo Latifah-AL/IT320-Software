@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>عينك — الخريطة</title>
+        <link rel="stylesheet" href="../CSS/main.css"/>
+        <link rel="stylesheet" href="../CSS/map.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Cairo:wght@700;800&display=swap" rel="stylesheet"/>
+    </head>
+    <body>
+
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="nav-inner">
+                <a href="index.html" class="logo">
+                    <img src="../Images/logo.png" alt="عينك"/>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html">الرئيسية</a></li>
+                    <li><a href="create-report.html">إضافة بلاغ</a></li>
+                    <li><a href="my-reports.html">بلاغاتي</a></li>
+                    <li><a href="map.html" class="active">الخريطة</a></li>
+                </ul>
+                <div class="nav-user">
+                    <a href="profile.html" class="nav-username">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>لطيفة</span>
+                    </a>
+                    <a href="index.html" class="btn-logout">
+                        <i class="fa-solid fa-right-from-bracket"></i> خروج
+                    </a>
+                </div>
+                <button class="burger" id="burger">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <div class="mobile-nav" id="mobileNav">
+                <a href="dashboard.html">الرئيسية</a>
+                <a href="create-report.html">إضافة بلاغ</a>
+                <a href="my-reports.html">بلاغاتي</a>
+                <a href="map.html">الخريطة</a>
+                <a href="index.html" class="btn-logout-mobile">خروج</a>
+            </div>
+        </nav>
+
+        <!-- MAP LAYOUT -->
+        <div class="map-layout">
+
+            <!-- Sidebar -->
+            <aside class="map-sidebar">
+                <div class="sidebar-header">
+                    <h2><i class="fa-solid fa-map-location-dot"></i> البلاغات على الخريطة</h2>
+                    <span class="report-count">6 بلاغات</span>
+                </div>
+
+                <div class="sidebar-list">
+
+                    <div class="sidebar-item" onclick="focusPin(0)">
+                        <div class="sidebar-icon pending">
+                            <i class="fa-solid fa-car-burst"></i>
+                        </div>
+                        <div class="sidebar-info">
+                            <h4>وقوف مخالف أمام مدخل</h4>
+                            <span><i class="fa-solid fa-location-dot"></i> حي النزهة، الرياض</span>
+                        </div>
+                        <span class="status-dot pending"></span>
+                    </div>
+
+                    <div class="sidebar-item" onclick="focusPin(1)">
+                        <div class="sidebar-icon resolved">
+                            <i class="fa-solid fa-person-walking"></i>
+                        </div>
+                        <div class="sidebar-info">
+                            <h4>إشغال رصيف المشاة</h4>
+                            <span><i class="fa-solid fa-location-dot"></i> حي العليا، الرياض</span>
+                        </div>
+                        <span class="status-dot resolved"></span>
+                    </div>
+
+                    <div class="sidebar-item" onclick="focusPin(2)">
+                        <div class="sidebar-icon review">
+                            <i class="fa-solid fa-truck-medical"></i>
+                        </div>
+                        <div class="sidebar-info">
+                            <h4>سد مخرج طوارئ</h4>
+                            <span><i class="fa-solid fa-location-dot"></i> حي الملز، الرياض</span>
+                        </div>
+                        <span class="status-dot review"></span>
+                    </div>
+
+                    <div class="sidebar-item" onclick="focusPin(3)">
+                        <div class="sidebar-icon rejected">
+                            <i class="fa-solid fa-wheelchair"></i>
+                        </div>
+                        <div class="sidebar-info">
+                            <h4>احتلال موقف ذوي الاحتياجات</h4>
+                            <span><i class="fa-solid fa-location-dot"></i> حي السليمانية، الرياض</span>
+                        </div>
+                        <span class="status-dot rejected"></span>
+                    </div>
+
+                    <div class="sidebar-item" onclick="focusPin(4)">
+                        <div class="sidebar-icon pending">
+                            <i class="fa-solid fa-road-barrier"></i>
+                        </div>
+                        <div class="sidebar-info">
+                            <h4>إعاقة حركة المرور</h4>
+                            <span><i class="fa-solid fa-location-dot"></i> حي الروضة، الرياض</span>
+                        </div>
+                        <span class="status-dot pending"></span>
+                    </div>
+
+                    <div class="sidebar-item" onclick="focusPin(5)">
+                        <div class="sidebar-icon resolved">
+                            <i class="fa-solid fa-car-burst"></i>
+                        </div>
+                        <div class="sidebar-info">
+                            <h4>وقوف في منطقة ممنوعة</h4>
+                            <span><i class="fa-solid fa-location-dot"></i> حي الورود، الرياض</span>
+                        </div>
+                        <span class="status-dot resolved"></span>
+                    </div>
+
+                </div>
+
+                <!-- Legend -->
+                <div class="map-legend">
+                    <h4>الحالات</h4>
+                    <div class="legend-item">
+                        <span class="status-dot pending"></span> قيد الانتظار
+                    </div>
+                    <div class="legend-item">
+                        <span class="status-dot review"></span> قيد المراجعة
+                    </div>
+                    <div class="legend-item">
+                        <span class="status-dot resolved"></span> تم الحل
+                    </div>
+                    <div class="legend-item">
+                        <span class="status-dot rejected"></span> مرفوض
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Map -->
+            <div id="map"></div>
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+        <script src="../JavaScript/map.js"></script>
+
+    </body>
+</html>
