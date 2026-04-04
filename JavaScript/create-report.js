@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Image preview for both create & edit pages
+    // Image preview
     var imageInput = document.getElementById('imageInput');
     var uploadArea  = document.querySelector('.upload-area');
     var currentImage = document.querySelector('.current-image img');
