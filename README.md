@@ -38,7 +38,7 @@ Users can submit reports with descriptions, images, and locations, while admins 
 ## 🚀 How to Run
 
 1. Open the project folder
-2. Open `home.html` in your browser
+2. Open `index.html` in your browser
 3. Navigate through the pages
 
 ---
