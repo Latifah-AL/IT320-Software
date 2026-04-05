@@ -53,93 +53,45 @@
                 <div class="page-header">
                     <div>
                         <h1>تفاصيل البلاغ</h1>
-                        <p class="report-id-label">رقم البلاغ: <span>RPT-001</span></p>
+                        <p class="report-id-label">رقم البلاغ: <span id="reportIdLabel"></span></p>
                     </div>
                     <div class="header-actions">
                         <a href="my-reports.html" class="btn-back">
                             <i class="fa-solid fa-arrow-right"></i> العودة للبلاغات
                         </a>
-                        <a href="edit-report.html" class="btn-edit-top">
-                            <i class="fa-solid fa-pen"></i> تعديل
-                        </a>
-                        <button
-                            class="btn-delete-top"
-                            onclick="document.getElementById('deleteModal').style.display='flex'"
-                        >
-                            <i class="fa-solid fa-trash"></i> حذف
-                        </button>
                     </div>
                 </div>
 
                 <!-- Detail Layout -->
                 <div class="detail-layout">
 
-                    <!-- Right Column: Image + Status -->
+                    <!-- Right Column -->
                     <div class="detail-right">
 
                         <!-- Image -->
-                        <div class="detail-img">
-                            <div class="img-placeholder-detail">
-                                <img src="../Images/re1.jpeg" alt="وقوف مخالف أمام مدخل"/>
-                            </div>
-                        </div>
+                        <div class="detail-img" id="detailImg"></div>
 
                         <!-- Status Card -->
                         <div class="status-card">
                             <h3>حالة البلاغ</h3>
-                            <div class="status-badge pending">
-                                <i class="fa-solid fa-clock"></i> قيد الانتظار
-                            </div>
-                            <div class="status-timeline">
-                                <div class="timeline-step done">
-                                    <div class="step-dot"></div>
-                                    <div class="step-info">
-                                        <span class="step-title">تم الرفع</span>
-                                        <span class="step-date">12 يناير 2025</span>
-                                    </div>
-                                </div>
-                                <div class="timeline-line done"></div>
-                                <div class="timeline-step active">
-                                    <div class="step-dot"></div>
-                                    <div class="step-info">
-                                        <span class="step-title">قيد الانتظار</span>
-                                        <span class="step-date">—</span>
-                                    </div>
-                                </div>
-                                <div class="timeline-line"></div>
-                                <div class="timeline-step">
-                                    <div class="step-dot"></div>
-                                    <div class="step-info">
-                                        <span class="step-title">قيد المراجعة</span>
-                                        <span class="step-date">—</span>
-                                    </div>
-                                </div>
-                                <div class="timeline-line"></div>
-                                <div class="timeline-step">
-                                    <div class="step-dot"></div>
-                                    <div class="step-info">
-                                        <span class="step-title">تم الحل</span>
-                                        <span class="step-date">—</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="status-badge" id="detailStatus"></div>
+                            <div class="status-timeline" id="statusTimeline"></div>
                         </div>
 
                     </div>
 
-                    <!-- Left Column: Details -->
+                    <!-- Left Column -->
                     <div class="detail-left">
-
                         <div class="detail-card">
 
                             <!-- Title & Category -->
                             <div class="detail-title-row">
                                 <div class="category-icon">
-                                    <i class="fa-solid fa-car-burst"></i>
+                                    <i id="categoryIcon" class="fa-solid fa-car-burst"></i>
                                 </div>
                                 <div>
-                                    <h2>وقوف مخالف أمام مدخل</h2>
-                                    <span class="category-label">وقوف مخالف</span>
+                                    <h2 id="detailTitle"></h2>
+                                    <span class="category-label" id="categoryLabel"></span>
                                 </div>
                             </div>
 
@@ -151,25 +103,25 @@
                                     <span class="info-label">
                                         <i class="fa-solid fa-location-dot"></i> الموقع
                                     </span>
-                                    <span class="info-value">حي النزهة، الرياض</span>
+                                    <span class="info-value" id="infoLocation"></span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label">
                                         <i class="fa-solid fa-calendar"></i> تاريخ الرفع
                                     </span>
-                                    <span class="info-value">12 يناير 2025</span>
+                                    <span class="info-value" id="infoDate"></span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label">
                                         <i class="fa-solid fa-clock"></i> وقت المخالفة
                                     </span>
-                                    <span class="info-value">10:30 صباحاً</span>
+                                    <span class="info-value" id="infoDatetime"></span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label">
                                         <i class="fa-solid fa-hashtag"></i> رقم البلاغ
                                     </span>
-                                    <span class="info-value mono">RPT-001</span>
+                                    <span class="info-value mono" id="infoId"></span>
                                 </div>
                             </div>
 
@@ -180,10 +132,7 @@
                                 <span class="info-label">
                                     <i class="fa-solid fa-align-right"></i> وصف المخالفة
                                 </span>
-                                <p>
-                                    سيارة واقفة بشكل مخالف أمام مدخل المبنى وتعيق حركة الدخول
-                                    والخروج للسكان والزوار، وقد استمر هذا الوضع لأكثر من ساعة.
-                                </p>
+                                <p id="detailDesc"></p>
                             </div>
 
                         </div>
@@ -192,25 +141,6 @@
                 </div>
             </div>
         </main>
-
-        <!-- Delete Modal -->
-        <div class="modal-overlay" id="deleteModal" style="display:none;">
-            <div class="modal">
-                <div class="modal-icon">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                </div>
-                <h3>هل أنت متأكد؟</h3>
-                <p>سيتم حذف هذا البلاغ نهائياً ولا يمكن التراجع عن هذا الإجراء</p>
-                <div class="modal-actions">
-                    <button class="btn-cancel" onclick="document.getElementById('deleteModal').style.display='none'">
-                        إلغاء
-                    </button>
-                    <button class="btn-confirm-delete" onclick="window.location.href='my-reports.html'">
-                        حذف
-                    </button>
-                </div>
-            </div>
-        </div>
 
         <!-- FOOTER -->
         <footer class="footer">
@@ -236,6 +166,9 @@
                 <p>جميع الحقوق محفوظة &copy; 2025 — عينك</p>
             </div>
         </footer>
+
+        <script src="../JavaScript/reports-data.js"></script>
+        <script src="../JavaScript/report-detail.js"></script>
 
     </body>
 </html>

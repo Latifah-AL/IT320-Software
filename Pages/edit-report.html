@@ -53,7 +53,7 @@
                 <div class="page-header">
                     <div>
                         <h1>تعديل البلاغ</h1>
-                        <p class="report-id-label">رقم البلاغ: <span>RPT-001</span></p>
+                        <p class="report-id-label">رقم البلاغ: <span id="reportIdLabel">RPT-001</span></p>
                     </div>
                     <a href="my-reports.html" class="btn-back">
                         <i class="fa-solid fa-arrow-right"></i> العودة للبلاغات
@@ -62,7 +62,7 @@
 
                 <!-- Form -->
                 <div class="form-wrapper">
-                    <form action="my-reports.html" method="get">
+                    <form action="my-reports.html" method="get" id="editForm">
 
                         <!-- Title -->
                         <div class="form-group">
@@ -100,7 +100,7 @@
                             <label>
                                 <i class="fa-solid fa-camera"></i> صورة المخالفة
                             </label>
-                            <div class="current-image">
+                            <div class="current-image" id="currentImage">
                                 <img src="../Images/re1.jpeg" alt="وقوف مخالف أمام مدخل"/>
                             </div>
                             <div class="upload-area" onclick="document.getElementById('imageInput').click()">
@@ -177,6 +177,7 @@
             </div>
         </footer>
         
-        <script src="../JavaScript/create-report.js"></script>
+        <script src="../JavaScript/reports-data.js"></script>
+        <script src="../JavaScript/edit-report.js"></script>
     </body>
 </html>

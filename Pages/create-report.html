@@ -62,7 +62,7 @@
 
                 <!-- Form -->
                 <div class="form-wrapper">
-                    <form action="my-reports.html" method="get">
+                    <form action="my-reports.html" method="get" id="createReportForm">
 
                         <!-- Title -->
                         <div class="form-group">
@@ -74,6 +74,7 @@
                                 id="title"
                                 name="title"
                                 placeholder="مثال: وقوف مخالف أمام مدخل"
+                                required
                             />
                         </div>
 
@@ -82,7 +83,7 @@
                             <label for="category">
                                 <i class="fa-solid fa-tag"></i> نوع المخالفة
                             </label>
-                            <select id="category" name="category">
+                            <select id="category" name="category" required>
                                 <option value="" disabled selected>اختر نوع المخالفة</option>
                                 <option value="parking">
                                     🚗 وقوف مخالف
@@ -115,6 +116,7 @@
                                 name="description"
                                 rows="4"
                                 placeholder="اكتب وصفاً مختصراً للمخالفة..."
+                                required
                             ></textarea>
                         </div>
 
@@ -137,10 +139,10 @@
                                 <i class="fa-solid fa-location-dot"></i> الموقع
                             </label>
                             <div class="location-row">
-                                <input type="text" id="location" name="location" placeholder="مثال: النزهة، شارع القادسية، الرياض">
-                                <input type="hidden" id="lat" name="lat"/>
-                                <input type="hidden" id="lng" name="lng"/>
-                                <button type="button" class="btn-detect">
+                                <input type="text" id="location" name="location" placeholder="مثال: النزهة، شارع القادسية، الرياض" required>
+                                <input type="hidden" id="lat" name="lat" required>
+                                <input type="hidden" id="lng" name="lng" required>
+                                <button type="button" class="btn-detect" >
                                     <i class="fa-solid fa-crosshairs"></i> تحديد تلقائي
                                 </button>
                             </div>
@@ -150,7 +152,7 @@
                             <label for="datetime">
                                 <i class="fa-solid fa-clock"></i> تاريخ ووقت المخالفة
                             </label>
-                            <input type="datetime-local" id="datetime" name="datetime">
+                            <input type="datetime-local" id="datetime" name="datetime" required>
                         </div>
 
                         <!-- Submit -->
@@ -191,6 +193,7 @@
                 <p>جميع الحقوق محفوظة &copy; 2025 — عينك</p>
             </div>
         </footer>
+        <script src="../JavaScript/reports-data.js"></script>
         <script src="../JavaScript/create-report.js"></script>
     </body>
 </html>

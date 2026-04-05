@@ -48,7 +48,7 @@
         <!-- PAGE CONTENT -->
         <main class="page-main">
             <div class="container">
-
+                
                 <!-- Page Header -->
                 <div class="page-header">
                     <div>
@@ -69,198 +69,38 @@
                 <div class="toolbar">
                     <div class="search-box">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="ابحث برقم البلاغ..."/>
-                        <button>بحث</button>
+                        <input type="text" id="searchInput" placeholder="ابحث برقم البلاغ..."/>
+                        <button id="searchBtn">بحث</button>
                     </div>
                     <div class="filter-btns">
-                        <button class="filter-btn active">الكل</button>
-                        <button class="filter-btn">قيد الانتظار</button>
-                        <button class="filter-btn">قيد المراجعة</button>
-                        <button class="filter-btn">تم الحل</button>
-                        <button class="filter-btn">مرفوض</button>
+                        <button class="filter-btn active" data-filter="all">الكل</button>
+                        <button class="filter-btn" data-filter="pending">قيد الانتظار</button>
+                        <button class="filter-btn" data-filter="review">قيد المراجعة</button>
+                        <button class="filter-btn" data-filter="resolved">تم الحل</button>
+                        <button class="filter-btn" data-filter="rejected">مرفوض</button>
                     </div>
                 </div>
 
-                <p class="results-count">عرض 6 بلاغات</p>
+                <!-- Results count -->
+                <p class="results-count" id="resultsCount">عرض 6 بلاغات</p>
 
-                <!-- Reports Grid -->
-                <div class="reports-grid">
+                <!-- Grid — empty, JS fills it -->
+                <div class="reports-grid" id="reportsGrid"></div>
 
-                    <!-- REAL CARD -->
-                    <div class="report-card">
-                        <div class="card-img">
-                            <img src="../Images/re1.jpeg" alt="وقوف مخالف أمام مدخل"/>
-                            <span class="card-status pending">قيد الانتظار</span>
-                            <span class="card-category"><i class="fa-solid fa-car-burst"></i></span>
+                <!-- Delete Modal -->
+                <div class="modal-overlay" id="deleteModal" style="display:none;">
+                    <div class="modal">
+                        <div class="modal-icon">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
                         </div>
-                        <div class="card-body">
-                            <div class="card-id">RPT-001</div>
-                            <h3>وقوف مخالف أمام مدخل</h3>
-                            <div class="card-meta">
-                                <span><i class="fa-solid fa-location-dot"></i> حي النزهة، الرياض</span>
-                                <span><i class="fa-solid fa-calendar"></i> 12 يناير 2025</span>
-                            </div>
-                        </div>
-                        <div class="card-actions">
-                            <a href="report-detail.html" class="btn-view">
-                                <i class="fa-solid fa-eye"></i> عرض
-                            </a>
-                            <a href="edit-report.html" class="btn-edit">
-                                <i class="fa-solid fa-pen"></i> تعديل
-                            </a>
-                            <button class="btn-delete" onclick="document.getElementById('deleteModal').style.display='flex'">
-                                <i class="fa-solid fa-trash"></i> حذف
-                            </button>
+                        <h3>هل أنت متأكد؟</h3>
+                        <p>سيتم حذف هذا البلاغ نهائياً ولا يمكن التراجع عن هذا الإجراء</p>
+                        <div class="modal-actions">
+                            <button class="btn-cancel" id="cancelDeleteBtn">إلغاء</button>
+                            <button class="btn-confirm-delete" id="confirmDeleteBtn">حذف</button>
                         </div>
                     </div>
-
-                    <!-- DUMMY CARD 2 -->
-                    <div class="report-card">
-                        <div class="card-img">
-                            <img src="../Images/re2.jpeg" alt="إشغال رصيف المشاة"/>
-                            <span class="card-status resolved">تم الحل</span>
-                            <span class="card-category"><i class="fa-solid fa-person-walking"></i></span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-id">RPT-002</div>
-                            <h3>إشغال رصيف المشاة</h3>
-                            <div class="card-meta">
-                                <span><i class="fa-solid fa-location-dot"></i> حي العليا، الرياض</span>
-                                <span><i class="fa-solid fa-calendar"></i> 8 يناير 2025</span>
-                            </div>
-                        </div>
-                        <div class="card-actions">
-                            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> عرض</a>
-                            <a href="#" class="btn-edit"><i class="fa-solid fa-pen"></i> تعديل</a>
-                            <button class="btn-delete" onclick="document.getElementById('deleteModal').style.display='flex'">
-                                <i class="fa-solid fa-trash"></i> حذف
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- DUMMY CARD 3 -->
-                    <div class="report-card">
-                        <div class="card-img">
-                            <img src="../Images/re3.jpeg" alt="سد مخرج طوارئ"/>
-                            <span class="card-status review">قيد المراجعة</span>
-                            <span class="card-category"><i class="fa-solid fa-truck-medical"></i></span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-id">RPT-003</div>
-                            <h3>سد مخرج طوارئ</h3>
-                            <div class="card-meta">
-                                <span><i class="fa-solid fa-location-dot"></i> حي الملز، الرياض</span>
-                                <span><i class="fa-solid fa-calendar"></i> 5 يناير 2025</span>
-                            </div>
-                        </div>
-                        <div class="card-actions">
-                            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> عرض</a>
-                            <a href="#" class="btn-edit"><i class="fa-solid fa-pen"></i> تعديل</a>
-                            <button class="btn-delete" onclick="document.getElementById('deleteModal').style.display='flex'">
-                                <i class="fa-solid fa-trash"></i> حذف
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- DUMMY CARD 4 -->
-                    <div class="report-card">
-                        <div class="card-img">
-                            <img src="../Images/re4.jpeg" alt="احتلال موقف ذوي الاحتياجات"/>
-                            <span class="card-status rejected">مرفوض</span>
-                            <span class="card-category"><i class="fa-solid fa-wheelchair"></i></span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-id">RPT-004</div>
-                            <h3>احتلال موقف ذوي الاحتياجات</h3>
-                            <div class="card-meta">
-                                <span><i class="fa-solid fa-location-dot"></i> حي السليمانية، الرياض</span>
-                                <span><i class="fa-solid fa-calendar"></i> 1 يناير 2025</span>
-                            </div>
-                        </div>
-                        <div class="card-actions">
-                            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> عرض</a>
-                            <a href="#" class="btn-edit"><i class="fa-solid fa-pen"></i> تعديل</a>
-                            <button class="btn-delete" onclick="document.getElementById('deleteModal').style.display='flex'">
-                                <i class="fa-solid fa-trash"></i> حذف
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- DUMMY CARD 5 -->
-                    <div class="report-card">
-                        <div class="card-img">
-                            <div class="img-placeholder">
-                                <i class="fa-solid fa-image"></i>
-                                <span>لم يتم إرفاق صورة</span>
-                            </div>
-                            <span class="card-status pending">قيد الانتظار</span>
-                            <span class="card-category"><i class="fa-solid fa-road-barrier"></i></span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-id">RPT-005</div>
-                            <h3>إعاقة حركة المرور</h3>
-                            <div class="card-meta">
-                                <span><i class="fa-solid fa-location-dot"></i> حي الروضة، الرياض</span>
-                                <span><i class="fa-solid fa-calendar"></i> 28 ديسمبر 2024</span>
-                            </div>
-                        </div>
-                        <div class="card-actions">
-                            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> عرض</a>
-                            <a href="#" class="btn-edit"><i class="fa-solid fa-pen"></i> تعديل</a>
-                            <button class="btn-delete" onclick="document.getElementById('deleteModal').style.display='flex'">
-                                <i class="fa-solid fa-trash"></i> حذف
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- DUMMY CARD 6 -->
-                    <div class="report-card">
-                        <div class="card-img">
-                            <div class="img-placeholder">
-                                <i class="fa-solid fa-image"></i>
-                                <span>لم يتم إرفاق صورة</span>
-                            </div>
-                            <span class="card-status pending">قيد الانتظار</span>
-                            <span class="card-category"><i class="fa-solid fa-road-barrier"></i></span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-id">RPT-006</div>
-                            <h3>وقوف في منطقة ممنوعة</h3>
-                            <div class="card-meta">
-                                <span><i class="fa-solid fa-location-dot"></i> حي الورود، الرياض</span>
-                                <span><i class="fa-solid fa-calendar"></i> 20 ديسمبر 2024</span>
-                            </div>
-                        </div>
-                        <div class="card-actions">
-                            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> عرض</a>
-                            <a href="#" class="btn-edit"><i class="fa-solid fa-pen"></i> تعديل</a>
-                            <button class="btn-delete" onclick="document.getElementById('deleteModal').style.display='flex'">
-                                <i class="fa-solid fa-trash"></i> حذف
-                            </button>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-        </main>
-
-        <!-- Delete Modal -->
-        <div class="modal-overlay" id="deleteModal" style="display:none;">
-            <div class="modal">
-                <div class="modal-icon">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                </div>
-                <h3>هل أنت متأكد؟</h3>
-                <p>سيتم حذف هذا البلاغ نهائياً ولا يمكن التراجع عن هذا الإجراء</p>
-                <div class="modal-actions">
-                    <button class="btn-cancel" onclick="document.getElementById('deleteModal').style.display='none'">
-                        إلغاء
-                    </button>
-                    <button class="btn-confirm-delete" onclick="document.getElementById('deleteModal').style.display='none'">
-                        حذف
-                    </button>
-                </div>
-            </div>
         </div>
 
         <!-- FOOTER -->
@@ -288,5 +128,7 @@
             </div>
         </footer>
 
+        <script src="../JavaScript/reports-data.js"></script>
+        <script src="../JavaScript/my-reports.js"></script>
     </body>
 </html>
