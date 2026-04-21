@@ -164,3 +164,94 @@
     justify-content: flex-start;
   }
 }
+
+/* =====================
+   Toolbar
+===================== */
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 0.4rem 0.85rem;
+    flex: 1;
+    max-width: 340px;
+}
+
+.search-box i {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    flex: 1;
+    direction: rtl;
+}
+
+.search-box input::placeholder {
+    color: var(--muted);
+}
+
+.search-box button {
+    background: var(--green);
+    color: var(--sand);
+    border: none;
+    border-radius: 6px;
+    padding: 0.3rem 0.85rem;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.search-box button:hover {
+    background: var(--green-mid);
+}
+
+.filter-btns {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    padding: 0.35rem 1rem;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.87rem;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.filter-btn.active {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--sand);
+}

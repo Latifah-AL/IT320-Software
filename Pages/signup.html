@@ -30,16 +30,17 @@
       <p class="card-sub">انضم إلى مجتمع عينك وساهم في تحسين مدينتك</p>
     </div>
 
-    <div class="success-banner" id="success-banner">✓ تم إنشاء الحساب بنجاح!</div>
+    <!-- Error banner — shown when PHP redirects back with ?error= -->
+    <div id="error-banner" style="display:none; background:#fde8e8; color:#c0392b; padding:12px; border-radius:8px; margin-bottom:16px; text-align:center; font-size:14px;"></div>
 
-    <form id="signup-form" novalidate autocomplete="off">
+    <form id="signup-form" method="POST" action="../auth/register.php" novalidate autocomplete="off">
 
       <!-- Name Row -->
       <div class="form-row">
         <div class="form-group">
           <label for="fname">الاسم الأول</label>
           <div class="input-wrap">
-            <input type="text" id="fname" placeholder="سارة"/>
+            <input type="text" id="fname" name="fname" placeholder="سارة"/>
             <i class="status-icon" id="fname-icon"></i>
           </div>
           <span class="field-msg" id="fname-msg"></span>
@@ -47,7 +48,7 @@
         <div class="form-group">
           <label for="lname">اسم العائلة</label>
           <div class="input-wrap">
-            <input type="text" id="lname" placeholder="العمري"/>
+            <input type="text" id="lname" name="lname" placeholder="العمري"/>
             <i class="status-icon" id="lname-icon"></i>
           </div>
           <span class="field-msg" id="lname-msg"></span>
@@ -58,7 +59,7 @@
       <div class="form-group">
         <label for="username">اسم المستخدم</label>
         <div class="input-wrap">
-          <input type="text" id="username" placeholder="sara_2026" autocomplete="username"/>
+          <input type="text" id="username" name="username" placeholder="sara_2026" autocomplete="username"/>
           <i class="status-icon" id="username-icon"></i>
         </div>
         <span class="field-msg" id="username-msg">حروف إنجليزية وأرقام وشرطة سفلية فقط (3–20 حرفاً)</span>
@@ -68,7 +69,7 @@
       <div class="form-group">
         <label for="email">البريد الإلكتروني</label>
         <div class="input-wrap">
-          <input type="email" id="email" placeholder="example@domain.com" autocomplete="email"/>
+          <input type="email" id="email" name="email" placeholder="example@domain.com" autocomplete="email"/>
           <i class="status-icon" id="email-icon"></i>
         </div>
         <span class="field-msg" id="email-msg"></span>
@@ -78,7 +79,7 @@
       <div class="form-group">
         <label for="phone">رقم الجوال</label>
         <div class="input-wrap">
-          <input type="tel" id="phone" placeholder="05XXXXXXXX" maxlength="10"/>
+          <input type="tel" id="phone" name="phone" placeholder="05XXXXXXXX" maxlength="10"/>
           <i class="status-icon" id="phone-icon"></i>
         </div>
         <span class="field-msg" id="phone-msg">يبدأ بـ 05 ويتكوّن من 10 أرقام</span>
@@ -88,7 +89,7 @@
       <div class="form-group">
         <label for="nationalid">رقم الهوية الوطنية</label>
         <div class="input-wrap">
-          <input type="text" id="nationalid" placeholder="1XXXXXXXXX" maxlength="10"/>
+          <input type="text" id="nationalid" name="nationalid" placeholder="1XXXXXXXXX" maxlength="10"/>
           <i class="status-icon" id="nationalid-icon"></i>
         </div>
         <span class="field-msg" id="nationalid-msg">10 أرقام تبدأ بـ 1 أو 2</span>
@@ -98,7 +99,7 @@
       <div class="form-group">
         <label for="nationality">الجنسية</label>
         <div class="input-wrap">
-          <select id="nationality">
+          <select id="nationality" name="nationality">
             <option value="" disabled selected>اختر الجنسية</option>
             <option value="sa">سعودي</option>
             <option value="other">غير سعودي</option>
@@ -112,7 +113,7 @@
       <div class="form-group">
         <label for="dob">تاريخ الميلاد</label>
         <div class="input-wrap">
-          <input type="date" id="dob"/>
+          <input type="date" id="dob" name="dob"/>
           <i class="status-icon" id="dob-icon"></i>
         </div>
         <span class="field-msg" id="dob-msg">يجب أن يكون عمرك 18 سنة أو أكثر</span>
@@ -122,7 +123,7 @@
       <div class="form-group">
         <label for="password">كلمة المرور</label>
         <div class="input-wrap">
-          <input type="password" id="password" placeholder="••••••••" autocomplete="new-password"/>
+          <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="new-password"/>
           <button type="button" class="toggle-pw" id="eye-pw" aria-label="إظهار كلمة المرور">👁</button>
         </div>
         <div class="strength-bar"><div class="strength-fill" id="s-fill"></div></div>
@@ -141,7 +142,7 @@
       <div class="form-group">
         <label for="confirm">تأكيد كلمة المرور</label>
         <div class="input-wrap">
-          <input type="password" id="confirm" placeholder="••••••••" autocomplete="new-password"/>
+          <input type="password" id="confirm" name="confirm" placeholder="••••••••" autocomplete="new-password"/>
           <button type="button" class="toggle-pw" id="eye-cf" aria-label="إظهار تأكيد كلمة المرور">👁</button>
         </div>
         <span class="field-msg" id="confirm-msg"></span>
@@ -159,6 +160,17 @@
 <footer>&copy; 2026 عينك — جامعة الملك سعود · IT 320</footer>
 
 <script>
+
+// Show error from PHP redirect
+(function () {
+    var params = new URLSearchParams(window.location.search);
+    var err = params.get('error');
+    if (err) {
+        var banner = document.getElementById('error-banner');
+        banner.textContent = err;
+        banner.style.display = 'block';
+    }
+})();
 
 function field(id, state, msg) {
     var inp = document.getElementById(id);
@@ -360,9 +372,8 @@ document.getElementById('password').addEventListener('blur', vPassword);
 document.getElementById('confirm').addEventListener('input', vConfirm);
 document.getElementById('confirm').addEventListener('blur', vConfirm);
 
-// Submit
+// ✅ FIXED SUBMIT — validates first, then lets form POST to PHP
 document.getElementById('signup-form').addEventListener('submit', function (e) {
-    e.preventDefault();
     var results = [
         vFname(), vLname(), vUsername(), vEmail(),
         vPhone(), vNationalId(), vNationality(), vDob(),
@@ -370,15 +381,15 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
     ];
     var allOk = results.every(Boolean);
     if (!allOk) {
+        e.preventDefault(); // only stop if validation fails
         var first = document.querySelector('input.invalid, select.invalid');
         if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
     }
+    // All valid — let the form POST normally to register.php
     var btn = document.getElementById('sub-btn');
     btn.disabled    = true;
     btn.textContent = 'جارٍ الإنشاء…';
-    document.getElementById('success-banner').style.display = 'block';
-    setTimeout(function () { window.location.href = 'login.html'; }, 2200);
 });
 
 </script>

@@ -25,27 +25,36 @@
 <main>
   <div class="card">
     <div class="card-header">
-    
       <div class="card-logo-fallback" style="display:none">ع</div>
       <h1 class="card-title">تسجيل الدخول</h1>
       <p class="card-sub">مرحباً بك في منصة عينك</p>
     </div>
+
+    <!-- Success banner — shown after successful registration -->
+    <div id="success-banner" style="display:none; background:#e8f5e9; color:#2e7d32; padding:12px; border-radius:8px; margin-bottom:16px; text-align:center; font-size:14px;">
+      ✓ تم إنشاء الحساب بنجاح! يمكنك تسجيل الدخول الآن
+    </div>
+
+    <!-- Error banner — shown when PHP redirects back with ?error= -->
+    <div id="error-banner" style="display:none; background:#fde8e8; color:#c0392b; padding:12px; border-radius:8px; margin-bottom:16px; text-align:center; font-size:14px;"></div>
 
     <div class="role-toggle">
       <button class="role-btn active" id="btn-user"  onclick="setRole('user')">👤 مستخدم</button>
       <button class="role-btn"        id="btn-admin" onclick="setRole('admin')">🛡️ مشرف</button>
     </div>
 
-    <div class="admin-badge" id="admin-badge"><span>🔐 وضع المشرف  </span></div>
+    <div class="admin-badge" id="admin-badge" style="display:none;"><span>🔐 وضع المشرف</span></div>
 
-    <div class="success-banner" id="success-banner">✓ تم تسجيل الدخول بنجاح! جارٍ التحويل…</div>
+    <form id="login-form" method="POST" action="../auth/login.php" novalidate autocomplete="off">
 
-    <form id="login-form" novalidate autocomplete="off">
+      <!-- Hidden role — updated by setRole() -->
+      <input type="hidden" id="role-input" name="role" value="user"/>
 
       <div class="form-group">
         <label for="identifier" id="identifier-label">اسم المستخدم أو البريد الإلكتروني</label>
         <div class="input-wrap">
-          <input type="text" id="identifier" placeholder="sara_2026 أو example@domain.com" autocomplete="username"/>
+          <input type="text" id="identifier" name="identifier"
+                 placeholder="sara_2026 أو example@domain.com" autocomplete="username"/>
           <i class="status-icon" id="identifier-icon"></i>
         </div>
         <span class="field-msg" id="identifier-msg"></span>
@@ -54,7 +63,8 @@
       <div class="form-group">
         <label for="password">كلمة المرور</label>
         <div class="input-wrap">
-          <input type="password" id="password" placeholder="••••••••" autocomplete="current-password"/>
+          <input type="password" id="password" name="password"
+                 placeholder="••••••••" autocomplete="current-password"/>
           <button type="button" class="toggle-pw" id="eye-pw" aria-label="إظهار كلمة المرور">👁</button>
         </div>
         <span class="field-msg" id="password-msg"></span>
@@ -72,98 +82,120 @@
 <footer>&copy; 2026 عينك — جامعة الملك سعود · IT 320</footer>
 
 <script>
-let currentRole = 'user';
+var currentRole = 'user';
+
+// Show banners from URL params
+(function () {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('success')) {
+        document.getElementById('success-banner').style.display = 'block';
+    }
+    var err = params.get('error');
+    if (err) {
+        var banner = document.getElementById('error-banner');
+        banner.textContent = err;
+        banner.style.display = 'block';
+    }
+})();
 
 function setRole(role) {
-  currentRole = role;
-  document.getElementById('btn-user').classList.toggle('active',  role === 'user');
-  document.getElementById('btn-admin').classList.toggle('active', role === 'admin');
-  document.getElementById('admin-badge').style.display = role === 'admin' ? 'block' : 'none';
-  document.getElementById('identifier-label').textContent =
-    role === 'admin' ? 'معرّف المشرف أو البريد الإلكتروني' : 'اسم المستخدم أو البريد الإلكتروني';
-  document.getElementById('login-alert').style.display = 'none';
-  clearFields();
+    currentRole = role;
+    document.getElementById('role-input').value = role;
+    document.getElementById('btn-user').classList.toggle('active',  role === 'user');
+    document.getElementById('btn-admin').classList.toggle('active', role === 'admin');
+    document.getElementById('admin-badge').style.display = role === 'admin' ? 'block' : 'none';
+    document.getElementById('identifier-label').textContent =
+        role === 'admin' ? 'معرّف المشرف أو البريد الإلكتروني' : 'اسم المستخدم أو البريد الإلكتروني';
+    document.getElementById('identifier').placeholder =
+        role === 'admin' ? 'admin' : 'sara_2026 أو example@domain.com';
+    document.getElementById('error-banner').style.display = 'none';
+    clearFields();
 }
 
 function clearFields() {
-  ['identifier','password'].forEach(id => {
-    const el = document.getElementById(id);
-    el.classList.remove('valid','invalid');
-    document.getElementById(id+'-msg').textContent = '';
-    document.getElementById(id+'-msg').className = 'field-msg';
-    const ic = document.getElementById(id+'-icon');
-    if (ic) ic.classList.remove('show');
-  });
+    ['identifier', 'password'].forEach(function (id) {
+        var el = document.getElementById(id);
+        el.classList.remove('valid', 'invalid');
+        document.getElementById(id + '-msg').textContent = '';
+        document.getElementById(id + '-msg').className = 'field-msg';
+        var ic = document.getElementById(id + '-icon');
+        if (ic) ic.classList.remove('show');
+    });
 }
 
 function fieldState(id, state, msg) {
-  const inp = document.getElementById(id);
-  const m   = document.getElementById(id + '-msg');
-  const ic  = document.getElementById(id + '-icon');
-  inp.classList.remove('valid','invalid');
-  m.className = 'field-msg'; m.textContent = msg || '';
-  if (state === 'ok') {
-    inp.classList.add('valid'); m.classList.add('ok');
-    if (ic) { ic.textContent='✓'; ic.style.color='#1e8449'; ic.classList.add('show'); }
-  } else if (state === 'err') {
-    inp.classList.add('invalid'); m.classList.add('err');
-    if (ic) { ic.textContent='✗'; ic.style.color='#c0392b'; ic.classList.add('show'); }
-  } else {
-    if (ic) ic.classList.remove('show');
-  }
+    var inp = document.getElementById(id);
+    var m   = document.getElementById(id + '-msg');
+    var ic  = document.getElementById(id + '-icon');
+    inp.classList.remove('valid', 'invalid');
+    m.className = 'field-msg';
+    m.textContent = msg || '';
+    if (state === 'ok') {
+        inp.classList.add('valid');
+        m.classList.add('ok');
+        if (ic) { ic.textContent = '✓'; ic.style.color = '#1e8449'; ic.classList.add('show'); }
+    } else if (state === 'err') {
+        inp.classList.add('invalid');
+        m.classList.add('err');
+        if (ic) { ic.textContent = '✗'; ic.style.color = '#c0392b'; ic.classList.add('show'); }
+    } else {
+        if (ic) ic.classList.remove('show');
+    }
 }
 
-/* toggle password */
-document.getElementById('eye-pw').addEventListener('click', () => {
-  const inp = document.getElementById('password');
-  const btn = document.getElementById('eye-pw');
-  inp.type = inp.type === 'password' ? 'text' : 'password';
-  btn.textContent = inp.type === 'password' ? '👁' : '🙈';
+// Toggle password
+document.getElementById('eye-pw').addEventListener('click', function () {
+    var inp = document.getElementById('password');
+    var btn = document.getElementById('eye-pw');
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+    btn.textContent = inp.type === 'password' ? '👁' : '🙈';
 });
 
-/* validators */
+// Validators
 function vIdentifier() {
-  const v = document.getElementById('identifier').value.trim();
-  if (!v) {
-    fieldState('identifier','err', currentRole === 'admin' ? 'معرّف المشرف مطلوب' : 'اسم المستخدم أو البريد الإلكتروني مطلوب');
-    return false;
-  }
-  if (v.length < 3) { fieldState('identifier','err','يجب أن يكون 3 أحرف على الأقل'); return false; }
-  fieldState('identifier','ok',''); return true;
+    var v = document.getElementById('identifier').value.trim();
+    if (!v) {
+        fieldState('identifier', 'err', currentRole === 'admin' ? 'معرّف المشرف مطلوب' : 'اسم المستخدم أو البريد الإلكتروني مطلوب');
+        return false;
+    }
+    if (v.length < 3) { fieldState('identifier', 'err', 'يجب أن يكون 3 أحرف على الأقل'); return false; }
+    fieldState('identifier', 'ok', '');
+    return true;
 }
 
 function vPassword() {
-  const v = document.getElementById('password').value;
-  if (!v) { fieldState('password','err','كلمة المرور مطلوبة'); return false; }
-  if (v.length < 8) { fieldState('password','err',`كلمة المرور قصيرة جداً (${v.length}/8 أحرف كحد أدنى)`); return false; }
-  fieldState('password','ok',''); return true;
+    var v = document.getElementById('password').value;
+    if (!v) { fieldState('password', 'err', 'كلمة المرور مطلوبة'); return false; }
+    if (v.length < 8) {
+        fieldState('password', 'err', 'كلمة المرور قصيرة جداً (' + v.length + '/8 أحرف كحد أدنى)');
+        return false;
+    }
+    fieldState('password', 'ok', '');
+    return true;
 }
 
-/* live */
-document.getElementById('identifier').addEventListener('blur',  vIdentifier);
-document.getElementById('identifier').addEventListener('input', () => { if (document.getElementById('identifier').classList.contains('invalid')) vIdentifier(); });
-document.getElementById('password').addEventListener('blur',  vPassword);
-document.getElementById('password').addEventListener('input', () => { if (document.getElementById('password').classList.contains('invalid')) vPassword(); });
+// Live listeners
+document.getElementById('identifier').addEventListener('blur', vIdentifier);
+document.getElementById('identifier').addEventListener('input', function () {
+    if (document.getElementById('identifier').classList.contains('invalid')) vIdentifier();
+});
+document.getElementById('password').addEventListener('blur', vPassword);
+document.getElementById('password').addEventListener('input', function () {
+    if (document.getElementById('password').classList.contains('invalid')) vPassword();
+});
 
-/* submit */
-document.getElementById('login-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const ok1 = vIdentifier();
-  const ok2 = vPassword();
-  if (!ok1 || !ok2) return;
-
-  const btn = document.getElementById('sub-btn');
-  btn.disabled = true; btn.textContent = 'جارٍ التحقق…';
-
-  /* ── Accept any credentials NOTE this is just because there is no database , redirect by role ── */
-  setTimeout(() => {
-    document.getElementById('success-banner').style.display = 'block';
-    setTimeout(() => {
-      window.location.href = currentRole === 'admin'
-        ? '../Pages/admin-dashboard.html'
-        : '../Pages/profile.html';
-    }, 1500);
-  }, 700);
+// ✅ FIXED SUBMIT — validates first, then lets form POST to PHP
+document.getElementById('login-form').addEventListener('submit', function (e) {
+    var ok1 = vIdentifier();
+    var ok2 = vPassword();
+    if (!ok1 || !ok2) {
+        e.preventDefault(); // only stop if validation fails
+        return;
+    }
+    // All valid — let the form POST normally to login.php
+    var btn = document.getElementById('sub-btn');
+    btn.disabled = true;
+    btn.textContent = 'جارٍ التحقق…';
 });
 </script>
 </body>

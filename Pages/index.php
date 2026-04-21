@@ -1,0 +1,295 @@
+<?php
+session_start();
+
+// Check who is logged in
+$iscitizen = isset($_SESSION['citizen_id']);
+$isAdmin   = isset($_SESSION['admin_id']);
+$citizenName = $_SESSION['citizen_name'] ?? '';
+$adminName   = $_SESSION['admin_name']   ?? '';
+
+// If admin visits index, redirect to dashboard
+if ($isAdmin) {
+    header('Location: admin-dashboard.php');
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>عينك — الإبلاغ عن مخالفات المدينة</title>
+  <link rel="stylesheet" href="../CSS/index.css"/>
+  <link rel="stylesheet" href="../CSS/main.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Cairo:wght@700;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.php" class="logo">
+        <img src="../Images/logo.png" alt="عينك"/>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">عن النظام</a></li>
+        <li><a href="#features">المميزات</a></li>
+        <li><a href="#violations">المخالفات</a></li>
+        <li><a href="#stats">الإحصائيات</a></li>
+      </ul>
+
+      <?php if ($iscitizen): ?>
+        <div class="nav-user">
+          <a href="create-report.php" class="nav-link-btn">
+            <i class="fa-solid fa-plus"></i> إضافة بلاغ
+          </a>
+          <a href="my-reports.php" class="nav-link-btn">
+            <i class="fa-solid fa-list"></i> بلاغاتي
+          </a>
+          <a href="profile.php" class="nav-username">
+            <i class="fa-solid fa-circle-user"></i>
+            <span><?= htmlspecialchars($citizenName) ?></span>
+          </a>
+          <a href="../auth/logout.php" class="btn-logout">
+            <i class="fa-solid fa-right-from-bracket"></i> خروج
+          </a>
+        </div>
+      <?php else: ?>
+        <div class="nav-auth">
+          <a href="login.html">تسجيل الدخول</a>
+          <a href="signup.html" class="btn-green">إنشاء حساب</a>
+        </div>
+      <?php endif; ?>
+
+      <button class="burger" id="burger">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#about">عن النظام</a>
+      <a href="#features">المميزات</a>
+      <a href="#violations">المخالفات</a>
+      <a href="#stats">الإحصائيات</a>
+      <?php if ($iscitizen): ?>
+        <a href="create-report.php">إضافة بلاغ</a>
+        <a href="my-reports.php">بلاغاتي</a>
+        <a href="profile.php">حسابي</a>
+        <a href="../auth/logout.php" class="btn-logout-mobile">خروج</a>
+      <?php else: ?>
+        <a href="login.html">تسجيل الدخول</a>
+        <a href="signup.html" class="btn-green">إنشاء حساب</a>
+      <?php endif; ?>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>معاً نبني مدناً أكثر أماناً</h1>
+      <p>منصة عينك تُمكّنك من الإبلاغ عن مخالفات المدينة بسهولة — صورة، موقع، وصف — وتتابع بلاغك حتى يُحل</p>
+      <div class="hero-btns">
+        <?php if ($iscitizen): ?>
+          <a href="create-report.php" class="btn-green">
+            <i class="fa-solid fa-plus"></i> أضف بلاغاً الآن
+          </a>
+          <a href="my-reports.php" class="btn-outline">بلاغاتي</a>
+        <?php else: ?>
+          <a href="signup.html" class="btn-green">إنشاء حساب</a>
+          <a href="login.html" class="btn-outline">تسجيل الدخول</a>
+        <?php endif; ?>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-label">عن النظام</div>
+      <h2>ما هي منصة عينك؟</h2>
+      <p class="section-desc">عينك منصة إلكترونية مجتمعية تُتيح للمواطنين في المملكة العربية السعودية الإبلاغ عن مخالفات الفضاء العام كالوقوف المخالف، إشغال الأرصفة، وسد مخارج الطوارئ بضغطة واحدة من هاتفهم. تتسلّم الجهات المختصة البلاغات فور رفعها، ويتابع المستخدم حالة بلاغه حتى يُحل.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">١</div>
+          <h4>التقط الصورة</h4>
+          <p>صوّر المخالفة واكتب وصفاً مختصراً</p>
+        </div>
+        <div class="step-arrow"><i class="fa-solid fa-chevron-left"></i></div>
+        <div class="step">
+          <div class="step-num">٢</div>
+          <h4>حدّد الموقع</h4>
+          <p>يتم تحديد موقعك تلقائياً أو يدوياً</p>
+        </div>
+        <div class="step-arrow"><i class="fa-solid fa-chevron-left"></i></div>
+        <div class="step">
+          <div class="step-num">٣</div>
+          <h4>تابع بلاغك</h4>
+          <p>يصل للجهات المختصة فوراً وتتابع تقدمه</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section bg-sand" id="features">
+    <div class="container">
+      <div class="section-label">المميزات</div>
+      <h2>لماذا تختار عينك؟</h2>
+      <div class="grid-3">
+        <div class="card">
+          <i class="fa-solid fa-camera card-icon"></i>
+          <h4>رفع الصور</h4>
+          <p>أرفق صورة المخالفة من كاميرا هاتفك كدليل واضح</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-map-location-dot card-icon"></i>
+          <h4>تحديد الموقع تلقائياً</h4>
+          <p>يكتشف النظام موقعك الجغرافي فور فتح نموذج البلاغ</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-clock-rotate-left card-icon"></i>
+          <h4>متابعة البلاغ</h4>
+          <p>تابع حالة كل بلاغ من قيد الانتظار حتى الحل</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-star card-icon"></i>
+          <h4>نقاط المكافأة</h4>
+          <p>اكسب نقاطاً مع كل بلاغ وتقدّم بمستواك</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-shield-halved card-icon"></i>
+          <h4>حماية الخصوصية</h4>
+          <p>بياناتك محمية وهويتك لا تُكشف لأي طرف خارجي</p>
+        </div>
+        <div class="card">
+          <i class="fa-solid fa-magnifying-glass card-icon"></i>
+          <h4>بحث سريع</h4>
+          <p>ابحث عن أي بلاغ برقمه المرجعي في ثوانٍ</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIOLATIONS -->
+  <section class="section" id="violations">
+    <div class="container">
+      <div class="section-label">أنواع المخالفات</div>
+      <h2>ماذا يمكنك أن تُبلّغ عنه؟</h2>
+      <div class="grid-3">
+        <div class="viol-card">
+          <i class="fa-solid fa-car-burst"></i>
+          <h4>وقوف مخالف</h4>
+          <p>وقوف في أماكن ممنوعة أو محجوزة</p>
+        </div>
+        <div class="viol-card">
+          <i class="fa-solid fa-person-walking"></i>
+          <h4>إشغال الأرصفة</h4>
+          <p>سد ممرات المشاة بالسيارات أو البضائع</p>
+        </div>
+        <div class="viol-card">
+          <i class="fa-solid fa-truck-medical"></i>
+          <h4>سد مخارج الطوارئ</h4>
+          <p>إعاقة وصول سيارات الإسعاف أو الإطفاء</p>
+        </div>
+        <div class="viol-card">
+          <i class="fa-solid fa-wheelchair"></i>
+          <h4>مواقف ذوي الاحتياجات</h4>
+          <p>احتلال الأماكن المخصصة لذوي الاحتياجات</p>
+        </div>
+        <div class="viol-card">
+          <i class="fa-solid fa-road-barrier"></i>
+          <h4>إعاقة حركة المرور</h4>
+          <p>توقف غير نظامي يُعطّل سير المركبات</p>
+        </div>
+        <div class="viol-card">
+          <i class="fa-solid fa-ellipsis"></i>
+          <h4>وغيرها كثير</h4>
+          <p>أي مخالفة تمس النظام العام وسلامة المجتمع</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section stats-section" id="stats">
+    <div class="container">
+      <div class="section-label light">إحصائيات</div>
+      <h2 class="light-h2">أرقام تعكس تأثيرنا</h2>
+      <div class="stats-grid">
+        <div class="stat">
+          <span class="stat-num">1280+</span>
+          <span class="stat-lbl">بلاغ مُرفوع</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">860+</span>
+          <span class="stat-lbl">مخالفة تم حلها</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">520+</span>
+          <span class="stat-lbl">مستخدم نشط</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">14+</span>
+          <span class="stat-lbl">حي مشمول</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-section">
+    <div class="container">
+      <h2>لاحظت مخالفة؟ أبلغ عنها الآن</h2>
+      <p class="section-desc">سجّل دخولك وارفع بلاغك في أقل من دقيقة</p>
+      <div class="hero-btns">
+        <?php if ($iscitizen): ?>
+          <a href="create-report.php" class="btn-green">
+            <i class="fa-solid fa-plus"></i> أضف بلاغاً الآن
+          </a>
+          <a href="my-reports.php" class="btn-outline-dark">بلاغاتي</a>
+        <?php else: ?>
+          <a href="signup.html" class="btn-green">إنشاء حساب</a>
+          <a href="login.html" class="btn-outline-dark">تسجيل الدخول</a>
+        <?php endif; ?>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="../Images/logo.png" alt="عينك"/>
+        <p>منصة مجتمعية للإبلاغ عن مخالفات المدن في المملكة العربية السعودية</p>
+      </div>
+      <div class="footer-links">
+        <h5>روابط</h5>
+        <a href="#about">عن النظام</a>
+        <a href="#features">المميزات</a>
+        <a href="#violations">المخالفات</a>
+        <?php if ($iscitizen): ?>
+          <a href="create-report.php">إضافة بلاغ</a>
+          <a href="my-reports.php">بلاغاتي</a>
+        <?php else: ?>
+          <a href="login.html">تسجيل الدخول</a>
+          <a href="signup.html">إنشاء حساب</a>
+        <?php endif; ?>
+      </div>
+      <div class="footer-links">
+        <h5>تواصل معنا</h5>
+        <span><i class="fa-solid fa-envelope"></i> support@aynek.sa</span>
+        <span><i class="fa-solid fa-location-dot"></i> المملكة العربية السعودية</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>جميع الحقوق محفوظة &copy; 2025 — عينك</p>
+    </div>
+  </footer>
+
+  <script>
+  document.getElementById('burger').addEventListener('click', function () {
+      document.getElementById('mobileNav').classList.toggle('open');
+  });
+  </script>
+
+</body>
+</html>
