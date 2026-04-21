@@ -51,6 +51,7 @@ if (isset($_GET['updated'])) {
     <title>عينك — إدارة البلاغات</title>
     <link rel="stylesheet" href="../CSS/main.css"/>
     <link rel="stylesheet" href="../CSS/manage-reports.css"/>
+    <link rel="stylesheet" href="../CSS/admin-dashboard.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Cairo:wght@700;800&display=swap" rel="stylesheet"/>
 </head>
