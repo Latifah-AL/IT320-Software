@@ -71,11 +71,11 @@ foreach ($reports as $r) {
 
         <nav class="navbar">
             <div class="nav-inner">
-                <a href="index.html" class="logo">
+                <a href="index.php" class="logo">
                     <img src="../Images/logo.png" alt="عينك"/>
                 </a>
                 <ul class="nav-links">
-                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="index.php">الرئيسية</a></li>
                     <li><a href="create-report.php">إضافة بلاغ</a></li>
                     <li><a href="my-reports.php">بلاغاتي</a></li>
                     <li><a href="map.php" class="active">الخريطة</a></li>
@@ -94,7 +94,7 @@ foreach ($reports as $r) {
                 </button>
             </div>
             <div class="mobile-nav" id="mobileNav">
-                <a href="index.html">الرئيسية</a>
+                <a href="index.php">الرئيسية</a>
                 <a href="create-report.php">إضافة بلاغ</a>
                 <a href="my-reports.php">بلاغاتي</a>
                 <a href="map.php">الخريطة</a>

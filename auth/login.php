@@ -3,7 +3,7 @@ session_start();
 require_once '../config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../Pages/login.php');
+    header('Location: ../Pages/login.html');
     exit;
 }
 
@@ -47,6 +47,6 @@ if (!$identifier || !$password) {
     }
 }
 
-header('Location: ../Pages/login.php?error=' . urlencode($error));
+header('Location: ../Pages/login.html?error=' . urlencode($error));
 exit;
 ?>

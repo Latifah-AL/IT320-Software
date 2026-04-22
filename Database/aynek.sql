@@ -35,7 +35,7 @@ CREATE TABLE `admin` (
   `Email` varchar(100) NOT NULL,
   `PhoneNo` varchar(15) NOT NULL,
   `Password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
@@ -62,7 +62,7 @@ CREATE TABLE `citizen` (
   `Nationality` varchar(50) NOT NULL,
   `IDNo` varchar(20) NOT NULL,
   `TotalRewardPoints` int DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `citizen`
@@ -85,7 +85,7 @@ CREATE TABLE `location` (
   `Latitude` decimal(10,7) NOT NULL,
   `Longitude` decimal(10,7) NOT NULL,
   `Address` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `location`
@@ -115,7 +115,7 @@ CREATE TABLE `report` (
   `ImagePath` varchar(255) DEFAULT NULL,
   `SubmittedAt` datetime DEFAULT CURRENT_TIMESTAMP,
   `Status` enum('Pending','Under Review','Resolved','Rejected') DEFAULT 'Pending'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `report`
@@ -141,7 +141,7 @@ CREATE TABLE `rewards` (
   `ReportID` varchar(20) NOT NULL,
   `Points` int DEFAULT '10',
   `Date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `rewards`
